@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+	<head>
+		<% include partials/head %>
+	</head>
+	<body>
+		<header>
+			<% include partials/header %>
+		</header>
+		<div class="container main-wrapper">
+			<h1 class="pg-title">epro index</h1>
+			
+			<div class="btn-group-vertical button-group">
+				<a class="btn btn-primary" href="/patients">Patients</a>
+				<a class="btn btn-primary" href="#">Procedures</a>
+				<a class="btn btn-primary" href="#">Surveys</a>
+			</div>
+		</div>
+		<footer>
+			<% include partials/footer %>
+		</footer>
+	</body>
 </html>
