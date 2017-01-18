@@ -1,0 +1,46 @@
+.pg-title {
+	text-align: center;
+	display: block;
+}
+
+.main-wrapper {
+	text-align: center;
+	margin: 20px auto 0 auto;
+	padding: 0 20px 0 20px;
+}
+
+@media (min-width: 768px) {
+	.main-wrapper {
+		text-align: center;
+		margin: 20px auto 0 auto;
+		padding: 0 20px 0 20px;
+		width: 720px;
+	}
+}
+
+.button-group {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.patient-actions {
+	display: inline;
+}
+
+@media (max-width: 768px) {
+	.button-group {
+		text-align: center;
+		margin: 20px 0 20px 0;
+	}
+}
+
+@media (min-width: 500px) {
+	.form-primary {
+		margin: auto;
+		width: 500px;
+	}
+}
+
+footer {
+	margin-top: 100px;
+}
