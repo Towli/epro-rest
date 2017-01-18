@@ -3,16 +3,16 @@ var router = express.Router();
 
 /* GET /patients/ (index page) */
 router.get('/patients', function(req, res, next) {
-  res.send('patients#index');
+  res.render('patients/index');
 });
 
 /* GET /patients/new (new patient page) */
 router.get('/patients/new/', function(req, res, next) {
-	res.send('patients#new');
+	res.render('patients/new');
 });
 
 router.get('/patients/:id', function(req, res) {
-	res.send('patients#show');
+	res.render('patients/show');
 });
 
 module.exports = router;
