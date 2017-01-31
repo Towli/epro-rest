@@ -45,4 +45,13 @@ router.get('/patients/:id', function(req, res) {
 	});
 });
 
+/* DELETE /patients/:id */
+router.post('/patients', function(req, res, next) {
+	var id = req.body.id;
+	console.log("id = "+id);
+	Patient.findByIdAndRemove(id, function(err, patient) {
+		res.redirect('/patients');
+	});
+});
+
 module.exports = router;
