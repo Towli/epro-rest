@@ -16,8 +16,8 @@ router.get('/patients/new/', function(req, res, next) {
 	res.render('patients/new');
 });
 
+/* POST /patients/new */
 router.post('/patients/new', function(req, res, next) {
-	
 	/* Create a new patient from req params */
 	var patient = new Patient({
 		first_name: req.body.first_name,
@@ -34,11 +34,15 @@ router.post('/patients/new', function(req, res, next) {
 		console.log(patient);
 	});
 
-	res.render('patients/new');
+	res.redirect('/patients');
 });
 
+/* GET /patients/:id (show patient page) */
 router.get('/patients/:id', function(req, res) {
-	res.render('patients/show');
+	var id = req.params.id;
+	Patient.findById(id, function(err, patient) {
+		res.render('patients/show', {patient : patient});
+	});
 });
 
 module.exports = router;
