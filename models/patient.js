@@ -21,6 +21,4 @@ patientSchema.pre('save', function(next) {
 	next();
 });
 
-var Patient = mongoose.model('Patient', patientSchema);
-
-module.exports = Patient;
+module.exports = mongoose.model('Patient', patientSchema);

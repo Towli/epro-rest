@@ -9,6 +9,4 @@ var procedureSchema = new Schema({
 	department: String
 });
 
-var Procedure = mongoose.model('Procedure', procedureSchema);
-
-module.exports = Procedure;
+module.exports = mongoose.model('Procedure', procedureSchema);

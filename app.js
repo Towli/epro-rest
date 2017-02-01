@@ -6,15 +6,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-
 var index = require('./routes/index');
 var patients = require('./routes/patients');
 var procedures = require('./routes/procedures');
-
+var Procedure = require('./models/procedure');
 var app = express();
 
 // connect to mongodb
 mongoose.connect('mongodb://localhost/epro');
+
 // test connection
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
