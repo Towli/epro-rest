@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Patient = require('../models/patient');
+var Procedure = require('../models/procedure');
 
 /* GET /patients/ (index page) */
 router.get('/patients', function(req, res, next) {
@@ -13,7 +14,10 @@ router.get('/patients', function(req, res, next) {
 
 /* GET /patients/new (new patient page) */
 router.get('/patients/new/', function(req, res, next) {
-	res.render('patients/new');
+	Procedure.find({}, function(err, procedures) {
+		if (err) throw err;
+		res.render('patients/new', {procedures : procedures});
+	})
 });
 
 /* POST /patients/new */
