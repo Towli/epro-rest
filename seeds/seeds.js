@@ -1,0 +1,1 @@
+var ProcedureModel = require('mongoose').model('Procedure');
