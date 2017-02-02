@@ -27,9 +27,9 @@
 				</div>
 				<div class="form-group">
 					<label for="procedure">Procedure undertaken</label>
-					<select class="form-control">
+					<select name="procedure" class="form-control">
 					<% for(var i = 0; i < procedures.length; i++) { %>
-						<option><%= procedures[i].name %></option>
+						<option value="<%= procedures[i]._id %>"><%= procedures[i].name %></option>
 					<% } %>
 					</select>
 				</div>

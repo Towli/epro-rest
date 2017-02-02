@@ -5,6 +5,11 @@ var Schema = mongoose.Schema;
 var patientSchema = new Schema({
 	first_name: String,
 	last_name: String,
+	contact: {
+		phone: String,
+		email: String
+	},
+	procedure: { type: Schema.Types.ObjectId, ref: 'Procedure' }, 
 	dob: Date,
 	gender: String,
 	surveyed: Boolean,

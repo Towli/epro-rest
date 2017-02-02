@@ -23,11 +23,12 @@ router.get('/patients/new/', function(req, res, next) {
 /* POST /patients/new */
 router.post('/patients/new', function(req, res, next) {
 	/* Create a new patient from req params */
-	var patient = new Patient({
+	var patient = new Patient({	
 		first_name: req.body.first_name,
 		last_name: req.body.last_name,
 		dob: req.body.dob,
 		gender: req.body.gender,
+		procedure: req.body.procedure,
 		surveyed: false	// TODO functionality
 	});
 
@@ -44,7 +45,11 @@ router.post('/patients/new', function(req, res, next) {
 /* GET /patients/:id (show patient page) */
 router.get('/patients/:id', function(req, res) {
 	var id = req.params.id;
-	Patient.findById(id, function(err, patient) {
+	Patient.findById(id)
+	.populate('procedure')
+	.exec(function(err, patient) {
+		if (err) throw err;
+		console.log(patient.procedure.name);
 		res.render('patients/show', {patient : patient});
 	});
 });
