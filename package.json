@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "seed-patients": "mongoimport --db epro --collection patients --drop --file seeds/patients.json",
+    "seed-procedures": "mongoimport --db epro --collection procedures --drop --file seeds/procedures.json",
     "build-css": "node-sass public/stylesheets/sass/ -o public/stylesheets/css/"
   },
   "dependencies": {
