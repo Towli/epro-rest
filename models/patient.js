@@ -26,4 +26,17 @@ patientSchema.pre('save', function(next) {
 	next();
 });
 
+/* Helper methods */
+patientSchema.methods.full_name = function(cb) {
+	return this.first_name + " " + this.last_name;
+}
+
+patientSchema.methods.created_at_humanized = function(cb) {
+	return this.created_at.toDateString();
+}
+
+patientSchema.methods.dob_humanized = function(cb) {
+	return this.dob.toDateString();
+}
+
 module.exports = mongoose.model('Patient', patientSchema);

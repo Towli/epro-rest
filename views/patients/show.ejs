@@ -7,23 +7,17 @@
 			<% include ../partials/header %>
 		</header>
 		<div class="container main-wrapper">
-			<h1 class="pg-title">patients#show</h1>
+			<h1 class="pg-title">Profile</h1>
 
 			<div class="panel panel-default">
 			  <div class="panel-heading">
 			  	<h3 class="panel-title">Details</h3>
 			  </div>
 			  <div class="panel-body">
-			  	<%= patient.first_name + " " + patient.last_name %>		
-			  </div>
-			  <div class="panel-body">
-			  	<%= patient.dob %>		
-			  </div>
-  			  <div class="panel-body">
-			  	<%= patient.gender %>		
-			  </div>
-			  <div class="panel-body">
-			  	<%= patient.created_at %>		
+			  <h3><%= patient.full_name() %></h3>
+			  <p><strong>Date of Birth:</strong> <%= patient.dob_humanized() %></p>
+			  <p><strong>Gender:</strong> <%= patient.gender %></p>
+			  <p><strong>Created at:</strong> <%= patient.created_at_humanized() %></p>
 			  </div>
 			</div>
 
