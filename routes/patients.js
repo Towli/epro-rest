@@ -28,6 +28,10 @@ router.post('/patients/new', function(req, res, next) {
 		last_name: req.body.last_name,
 		dob: req.body.dob,
 		gender: req.body.gender,
+		contact: { 
+			phone: req.body.phone,
+			email: req.body.email 
+		},
 		procedure: req.body.procedure,
 		surveyed: false	// TODO functionality
 	});
