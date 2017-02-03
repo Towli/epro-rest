@@ -49,7 +49,6 @@ router.get('/patients/:id', function(req, res) {
 	.populate('procedure')
 	.exec(function(err, patient) {
 		if (err) throw err;
-		console.log(patient.procedure.name);
 		res.render('patients/show', {patient : patient});
 	});
 });
