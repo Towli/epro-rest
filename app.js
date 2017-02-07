@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 var index = require('./routes/index');
 var patients = require('./routes/patients');
 var procedures = require('./routes/procedures');
+var surveys = require('./routes/surveys');
 var Procedure = require('./models/procedure');
 var app = express();
 
@@ -40,9 +41,13 @@ app.use(require('node-sass-middleware')({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// fetch scripts from node_modules directory
+app.use('/js', express.static(__dirname + '/node_modules/survey-jquery/'));    
+
 app.use(index);
 app.use(patients);
 app.use(procedures);
+app.use(surveys);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
