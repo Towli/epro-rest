@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<% include ../partials/head %>
+	</head>
+	<body>
+		<header>
+			<% include ../partials/header %>
+		</header>
+		<div class="container main-wrapper">
+			<h1 class="pg-title">Generate Survey</h1>
+			<div class="btn-group-vertical button-group">
+				<form class="form-primary" method="post">
+					<div class="form-group">
+						<label for="procedure">Procedure undertaken</label>
+						<p><em>Select the procedure to generate a survey for:</em></p>
+						<select name="procedure" class="form-control">
+						<% for(var i = 0; i < procedures.length; i++) { %>
+							<option value="<%= procedures[i]._id %>"><%= procedures[i].name %></option>
+						<% } %>
+						</select>
+					</div>
+					<button type="submit" class="btn btn-primary">Save</button>
+				</form>
+			</div>
+		<footer>
+			<% include ../partials/footer %>
+		</footer>
+	</body>
+</html>
