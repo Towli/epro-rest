@@ -27,16 +27,29 @@ patientSchema.pre('save', function(next) {
 });
 
 /* Helper methods */
-patientSchema.methods.full_name = function(cb) {
+patientSchema.methods.full_name = function() {
 	return this.first_name + " " + this.last_name;
 }
 
-patientSchema.methods.created_at_humanized = function(cb) {
+patientSchema.methods.created_at_humanized = function() {
 	return this.created_at.toDateString();
 }
 
-patientSchema.methods.dob_humanized = function(cb) {
+patientSchema.methods.dob_humanized = function() {
 	return this.dob.toDateString();
+}
+
+patientSchema.methods.age = function() {
+	var current_date = new Date();
+	var current_year = current_date.getFullYear();
+	var current_month = current_date.getMonth();
+	var patient_age = current_year - this.dob.getFullYear();
+
+	/* If month of birth is greater than the current month, subtract a year of age */
+	if (this.dob.getMonth() > current_month)
+		patient_age--;
+
+	return patient_age;
 }
 
 module.exports = mongoose.model('Patient', patientSchema);
