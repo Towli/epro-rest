@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var procedureSchema = new Schema({
 	name: String,
 	excerpt: String,
-	description: Date,
+	description: String,
 	department: String
 });
 

@@ -8,18 +8,22 @@ $(document).ready(function(){
 		question2 = questionSet.question2;
 		question3 = questionSet.question3;
 		question4 = questionSet.question4;
-		$('#output-test').append(question1);
-		$('#output-test').append(question2);
-		$('#output-test').append(question3);
-		$('#output-test').append(question4);
 
 		Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
 		Survey.Survey.cssType = "bootstrap";
 		var survey = new Survey.Model( { questions: [
-		     {name:"name", type:"text", title: question1, placeHolder:"Jon Snow", isRequired: true},
-		     {name:"birthdate", type:"text", inputType:"date", title: question2, isRequired: true},
-		     {name:"color", type:"text", inputType:"color", title: question3},
-		     {name:"email", type:"text", inputType:"email", title: 	question4, placeHolder:"jon.snow@nightwatch.org", isRequired: true, validators: [{type:"email"}]}
+			{ 	name:"question1", type:"radiogroup", title: question1, isRequired: true,
+				colCount: 2, choices: ["choice_1", "choice_2", "choice_3", "choice_4"]			
+			},
+			{ 	name:"question2", type:"radiogroup", title: question2, isRequired: true,
+				colCount: 2, choices: ["choice_1", "choice_2", "choice_3", "choice_4"]			
+			},
+			{ 	name:"question3", type:"radiogroup", title: question3, isRequired: true,
+				colCount: 2, choices: ["choice_1", "choice_2", "choice_3", "choice_4"]			
+			},
+			{ 	name:"question4", type:"radiogroup", title: question4, isRequired: true,
+				colCount: 2, choices: ["choice_1", "choice_2", "choice_3", "choice_4"]			
+			},
 		]});
 
 		function sendDataToServer(survey) {
