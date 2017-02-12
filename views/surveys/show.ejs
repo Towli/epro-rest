@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<% include ../partials/head %>
+		<script src="/javascripts/survey_generator.js"></script>
 	</head>
 	<body>
 		<header>
@@ -9,8 +10,9 @@
 		<div class="container main-wrapper">
 			<h1 class="pg-title">Generated Survey</h1>
 			<hr>
-				<p><%= survey %></p>
-			
+				<p id="survey-json"><%= survey %></p>
+				<p id="output-test"></p>
+		</div>
 		<footer>
 			<% include ../partials/footer %>
 		</footer>

@@ -58,16 +58,16 @@ router.post('/surveys/new', function(req, res, next) {
 		var question4 = "Question 4 for " + procedure.name;
 
 		var survey = new Survey({
-			patient: null,
-			questionSet: {
-				question1: question1,
-				question2: question2,
-				question3: question3,
-				question4: question4 
+			patient : null,
+			questionSet : {
+				question1 : question1,
+				question2 : question2,
+				question3 : question3,
+				question4 : question4 
 			},
-			completed: false
+			completed : false
 		});
-		res.render('surveys/show', { survey : survey });
+		res.render('surveys/show', { survey : JSON.stringify(survey) });
 	});
 });
 
