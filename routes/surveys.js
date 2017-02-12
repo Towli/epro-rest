@@ -3,6 +3,7 @@ var router = express.Router();
 var Patient = require('../models/patient');
 var Procedure = require('../models/procedure');
 var Survey = require('../models/survey');
+var fs = require('fs');
 
 /* GET /surveys/ (index page) */
 router.get('/surveys', function(req, res, next) {
@@ -57,7 +58,7 @@ router.post('/surveys/new', function(req, res, next) {
 		var question3 = "Question 3 for " + procedure.name;
 		var question4 = "Question 4 for " + procedure.name;
 
-		var survey = new Survey({
+		var survey = {
 			patient : null,
 			questionSet : {
 				question1 : question1,
@@ -66,8 +67,23 @@ router.post('/surveys/new', function(req, res, next) {
 				question4 : question4 
 			},
 			completed : false
-		});
-		res.render('surveys/show', { survey : JSON.stringify(survey) });
+		};
+
+		/* Write json to file */
+		survey = JSON.stringify(survey);
+		try {
+			fs.writeFile("public/survey.json", survey, function(err) {
+				if (err)
+					console.log(err);
+				else {
+					console.log("Survey JSON successfully written to file.");	
+					res.render('surveys/show');	
+				}
+			});
+		} catch (e) {
+			console.log('File stream error: '+e);
+		}
+		
 	});
 });
 

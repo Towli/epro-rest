@@ -1,20 +1,19 @@
 <html>
 	<head>
 		<% include ../partials/head %>
-		<script src="/javascripts/survey_generator.js"></script>
+		
 	</head>
 	<body>
 		<header>
 			<% include ../partials/header %>
 		</header>
 		<div class="container main-wrapper">
-			<h1 class="pg-title">Generated Survey</h1>
-			<hr>
-				<p id="survey-json"><%= survey %></p>
-				<p id="output-test"></p>
-		</div>
+			<h1 class="pg-title">Example Survey</h1>
+			<div id="surveyElement"></div>
+			<div id="results"></div>
 		<footer>
 			<% include ../partials/footer %>
 		</footer>
 	</body>
+	<script src="/javascripts/survey_generator.js"></script>
 </html>

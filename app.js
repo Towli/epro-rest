@@ -15,6 +15,7 @@ var app = express();
 
 // connect to mongodb
 mongoose.connect('mongodb://localhost/epro');
+mongoose.Promise = Promise;
 
 // test connection
 var db = mongoose.connection;
