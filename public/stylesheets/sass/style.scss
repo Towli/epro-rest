@@ -1,3 +1,8 @@
+html, body {
+	height: 100%;
+	background-color: #f8f8f8;
+}
+
 .pg-title {
 	text-align: center;
 	display: block;
@@ -9,13 +14,23 @@
 	padding: 0 20px 0 20px;
 }
 
-@media (min-width: 768px) {
+a {
+	color: #777;
+}
+
+/*@media (min-width: 768px) {
 	.main-wrapper {
 		text-align: center;
 		margin: 20px auto 0 auto;
 		padding: 0 20px 0 20px;
 		width: 720px;
 	}
+}*/
+
+.container {
+	margin: 0;
+	padding: 0;
+	height: 100%;
 }
 
 .button-group {
@@ -43,4 +58,21 @@
 
 footer {
 	margin-top: 100px;
+}
+
+/* Navigation */
+
+/* Top Navigation */
+
+/* Side Navigation */
+.navbar {
+	margin-bottom: 0;
+	background-color: #fff;
+	border: none;
+}
+
+.sidebar {
+	padding: 0;
+	height: 100%;
+	background-color: #fff;
 }

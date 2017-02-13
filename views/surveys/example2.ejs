@@ -7,10 +7,14 @@
 		<header>
 			<% include ../partials/header %>
 		</header>
-		<div class="container main-wrapper">
-			<h1 class="pg-title">Example Survey</h1>
-			<div id="surveyElement"></div>
-			<div id="results"></div>
+		<div class="container">
+			<% include ../partials/side_nav %>
+			<div class="main-wrapper col-xs-9 col-xs-push-1">
+				<h1 class="pg-title">Example Survey</h1>
+				<div id="surveyElement"></div>
+				<div id="results"></div>
+			</div>
+		</div>
 		<footer>
 			<% include ../partials/footer %>
 		</footer>
