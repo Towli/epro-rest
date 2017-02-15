@@ -10,4 +10,16 @@ var procedureSchema = new Schema({
 	question_set: { type: Schema.Types.ObjectId, ref: 'QuestionSet' },
 });
 
+procedureSchema.methods.questions_html_humanized = function() {
+	if (!this.question_set)
+		return "<p>Question set has not been assigned.</p>";
+	else {
+		var questions_html = "";
+		for (var i = 0; i < this.question_set.questions.length; i++) {
+			questions_html += "<p>"+this.question_set.questions[i].title+"</p>";
+		}
+		return questions_html;
+	}
+}
+
 module.exports = mongoose.model('Procedure', procedureSchema);

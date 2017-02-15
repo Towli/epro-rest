@@ -30,7 +30,6 @@ router.get('/procedures/:id/edit', function(req, res, next) {
 		/* Find all questions */
 		Question.find({}, function(err, questions) {
 			if (err) throw err;
-			//console.log(procedure.question_set.questions[0])
 			res.render('procedures/edit', {procedure : procedure, questions : questions});
 		});
 	});
@@ -60,7 +59,6 @@ router.post('/procedures/:id/edit', function(req, res, next) {
 			/* Find all questions */
 			Question.find({}, function(err, questions) {
 				if (err) throw err;
-				console.log(procedure.question_set.questions[0])
 				res.render('procedures/edit', {procedure : procedure, questions : questions});
 			});
 		});
