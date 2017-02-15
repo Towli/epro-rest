@@ -17,6 +17,7 @@
 							<th>Name</th>
 							<th>Excerpt</th>
 							<th>Department</th>
+							<th></th>
 						</thead>
 						<tbody>					
 							<% for(var i = 0; i < procedures.length; i++) { %>
@@ -25,13 +26,17 @@
 										<%= i+1	 %>
 									</td>
 									<td>
-										<%= procedures[i].name+" "+procedures[i].name %>
+										<%= procedures[i].name %>
 									</td>
 									<td>
 										<%= procedures[i].excerpt %>
 									</td>
 									<td>
 										<%= procedures[i].department %>
+									</td>
+									</td>
+									<td>
+										<a href="/procedures/<%= procedures[i]._id %>/edit"><button class="btn btn-primary btn-xs">Edit</button></a>
 									</td>
 								</tr>
 							<% } %>

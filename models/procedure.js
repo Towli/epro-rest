@@ -6,7 +6,8 @@ var procedureSchema = new Schema({
 	name: String,
 	excerpt: String,
 	description: String,
-	department: String
+	department: String,
+	question_set: { type: Schema.Types.ObjectId, ref: 'QuestionSet' },
 });
 
 module.exports = mongoose.model('Procedure', procedureSchema);

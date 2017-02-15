@@ -3,10 +3,7 @@ var Schema = mongoose.Schema;
 
 /* create a schema for procedure model */
 var questionSetSchema = new Schema({
-	name: String,
-	excerpt: String,
-	description: Date,
-	department: String
+	questions : [{type: Schema.Types.ObjectId, ref: 'Question'}]
 });
 
-module.exports = mongoose.model('questionSet', questionSetSchema);
+module.exports = mongoose.model('QuestionSet', questionSetSchema);

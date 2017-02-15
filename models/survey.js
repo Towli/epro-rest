@@ -4,12 +4,6 @@ var Schema = mongoose.Schema;
 /* create a schema for procedure model */
 var surveySchema = new Schema({
 	patient: { type: Schema.Types.ObjectId, ref: 'Patient' },
-	questionSet: {
-		question1: String,
-		question2: String,
-		question3: String,
-		question4: String
-	},
 	completed: Boolean,
 	created_at: Date,
 	completed_at: Date
