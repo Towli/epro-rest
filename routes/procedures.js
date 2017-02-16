@@ -39,27 +39,36 @@ router.get('/procedures/:id/edit', function(req, res, next) {
 router.post('/procedures/:id/edit', function(req, res, next) {
 	var id = req.params.id;
 	var questions = req.body.questions;
-	var question_set = new QuestionSet({
-		questions: questions
-	});
+    var new_question_set = new QuestionSet({
+        procedure: id,
+        questions: questions
+    });
 
-	/* Call the built-in save method to persist to db */
-	question_set.save(function(err) {
+	/*  */
+	QuestionSet.findOne({'procedure' : id}, function(err, question_set, next) {
 		if (err) throw err;
-		console.log('QuestionSet saved successfully.');
-		console.log(question_set);
-	});
-	
-	Procedure.findById(id, function(err, procedure) {
-		if (err) throw err;
-		/* Find all questions */
-		procedure.question_set = question_set;
-		procedure.save(function(err, updated_procedure) {
+		if (!question_set)
+			question_set = new_question_set;
+		else 
+
+		/* If the procedure has an existing question_set, update it */
+		question_set.questions = questions;
+		question_set.save(function(err) {
 			if (err) throw err;
-			/* Find all questions */
-			Question.find({}, function(err, questions) {
+			console.log('QuestionSet updated successfully.');
+		});
+
+		/* Update procedure */
+		Procedure.findById(id, function(err, procedure) {
+			if (err) throw err;
+			procedure.question_set = question_set;
+			procedure.save(function(err, updated_procedure) {
 				if (err) throw err;
-				res.render('procedures/edit', {procedure : procedure, questions : questions});
+				/* Find all questions */
+				Question.find({}, function(err, questions) {
+					if (err) throw err;
+					res.redirect('/procedures/'+id+'/edit');
+				});
 			});
 		});
 	});
