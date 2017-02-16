@@ -22,17 +22,19 @@ router.get('/surveys/new', function(req, res, next) {
 router.post('/surveys/new', function(req, res, next) {
 	/* Get procedure from req params */
 	Procedure.findById(req.body.procedure)
-	.populate('procedure').exec(function(err, procedure) {
+	.populate({
+		path : 'question_set',
+		populate : {
+			path : 'questions',
+			model : 'Question'
+		}
+	}).exec(function(err, procedure) {
 		if (err) err;
 
+		/* Create survey */
 		var survey = {
 			patient : null,
-			questionSet : {
-				question1 : question1,
-				question2 : question2,
-				question3 : question3,
-				question4 : question4 
-			},
+			questionSet : procedure.question_set,
 			completed : false
 		};
 
