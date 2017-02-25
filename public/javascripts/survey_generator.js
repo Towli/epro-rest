@@ -11,14 +11,13 @@ $(document).ready(function(){
 				type : "radiogroup",
 				title : questionSet.questions[i].title,
 				isRequired : true,
-				colCount : 2,
+				//colCount : 2,
 				choices : ["choice_1", "choice_2", "choice_3", "choice_4"]
 			});
 		}
 		/* Convert into JSON to build survey model */
 		questionsJSON = JSON.stringify({ questions : questionsJSON });
 		questionsJSON = JSON.parse(questionsJSON);
-		//console.log(questionsJSON);
 
 		Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
 		Survey.Survey.cssType = "bootstrap";

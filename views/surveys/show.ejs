@@ -3,19 +3,14 @@
 		<% include ../partials/head %>		
 	</head>
 	<body>
-		<header>
-			<% include ../partials/header %>
-		</header>
-		<div class="container">
-			<% include ../partials/side_nav %>
-			<div class="main-wrapper col-xs-9 col-xs-push-1">
-				<h1 class="pg-title">Generated Survey</h1>
-				<div id="surveyElement"></div>
-				<div id="results"></div>
-				<footer>
-					<% include ../partials/footer %>
-				</footer>
-			</div>
+		<div class="main-wrapper col-xs-8 col-xs-push-2 survey">
+			<h1 class="pg-title">Generated Survey</h1>
+			<hr>
+			<div id="surveyElement"></div>
+			<div id="results"></div>
+			<footer>
+				<% include ../partials/footer %>
+			</footer>
 		</div>
 	</body>
 	<script src="/javascripts/survey_generator.js"></script>
