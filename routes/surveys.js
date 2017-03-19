@@ -32,11 +32,13 @@ router.post('/surveys/new', function(req, res, next) {
 		if (err) err;
 
 		/* Create survey */
-		var survey = {
+		var survey = new Survey ({
 			patient : null,
-			questionSet : procedure.question_set,
+			question_set : procedure.question_set,
 			completed : false
-		};
+		});
+
+		console.log(JSON.stringify(survey));
 
 		/* Write json to file */
 		survey = JSON.stringify(survey);
