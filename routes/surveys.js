@@ -78,11 +78,19 @@ router.get('/surveys/example2', function(req, res, next) {
 /* GET /surveys/:id (show survey) */
 router.get('/surveys/:id', function(req, res, next) {
 	var id = req.params.id;
+	var question_set;
 	Survey.findById(id)
-	.populate('procedure')
-	.exec(function(err, patient) {
+	.populate({
+		path : 'question_set',
+		populate : {
+			path : 'questions',
+			model : 'Question'
+		}
+	})
+	.exec(function(err, survey) {
 		if (err) throw err;
-		res.render('surveys/show');
+		question_set = survey.question_set;
+		res.render('surveys/show', { question_set: JSON.stringify(question_set) });
 	});
 });
 

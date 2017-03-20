@@ -1,8 +1,9 @@
 <html>
 	<head>
-		<% include ../partials/head %>		
+		<% include ../partials/head %>
 	</head>
 	<body>
+		<input type="hidden" id="questions-json" value="<%= question_set %>" />
 		<div class="main-wrapper col-xs-8 col-xs-push-2 survey">
 			<h1 class="pg-title">Generated Survey</h1>
 			<hr>
@@ -13,5 +14,5 @@
 			</footer>
 		</div>
 	</body>
-	<script src="/javascripts/survey_generator.js"></script>
+	<script language="JavaScript" src="/javascripts/survey_generator.js" type="text/javascript"></script>
 </html>
