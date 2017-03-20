@@ -40,8 +40,15 @@ router.post('/surveys/new', function(req, res, next) {
 
 		console.log(JSON.stringify(survey));
 
+		/* Call the built-in save method to persist to db */
+		survey.save(function(err) {
+			if (err) throw err;
+			console.log('Survey saved successfully.');
+			console.log(survey);
+		});
+
 		/* Write json to file */
-		survey = JSON.stringify(survey);
+		/*survey = JSON.stringify(survey);
 		try {
 			fs.writeFile("public/survey.json", survey, function(err) {
 				if (err)
@@ -53,7 +60,7 @@ router.post('/surveys/new', function(req, res, next) {
 			});
 		} catch (e) {
 			console.log('File stream error: '+e);
-		}
+		}*/
 		
 	});
 });
@@ -70,7 +77,13 @@ router.get('/surveys/example2', function(req, res, next) {
 
 /* GET /surveys/:id (show survey) */
 router.get('/surveys/:id', function(req, res, next) {
-	res.render('surveys/show'); //todo
+	var id = req.params.id;
+	Survey.findById(id)
+	.populate('procedure')
+	.exec(function(err, patient) {
+		if (err) throw err;
+		res.render('surveys/show');
+	});
 });
 
 module.exports = router;
