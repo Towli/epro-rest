@@ -1,23 +1,108 @@
-{
-	name: 'Open abdominal aneurysm repair'
-}
+[
+	{
+		"name": "Appendectomy",
+		"excerpt": "",
+		"description": "An appendectomy is the surgical removal of the appendix, a small tube that branches off the large intestine, to treat acute appendicitis. Appendicitis is the acute inflammation of this tube due to infection."
+	},
 
-{
-	name: 'Stent grafting of abdominal aortic aneurysms'
-}
+	{
+		"name": "Breast biopsy",
+		"excerpt": "",
+		"description": "A biopsy is a diagnostic test involving the removal of tissue or cells for examination under a microscope. This procedure is also used to remove abnormal breast tissue. A biopsy may be performed using a hollow needle to extract tissue (needle aspiration), or a lump may be partially or completely removed (lumpectomy) for examination and/or treatment."
+	},
 
-{
-	name: 'Lower limb bypass and occlusive surgery'
-}
+	{
+		"name": "Carotid endarterectomy",
+		"excerpt": "",
+		"description": "Carotid endarterectomy is a surgical procedure to remove blockage from carotid arteries, the arteries located in the neck that supply blood to the brain. Left untreated, a blocked carotid artery can lead to a stroke."
+	},
+	{
+		"name": "Cataract surgery",
+		"excerpt": "",
+		"description": "Cataracts cloud the normally clear lens of the eyes. Cataract surgery involves the removal of the cloudy contents with ultrasound waves. In some cases, the entire lens is removed."
+	},
 
-{
-	name: 'Vascular access surgery'
-}
+	{
+		"name": "Cesarean section",
+		"excerpt": "",
+		"description": "Cesarean section (also called a c-section) is the surgical delivery of a baby by an incision through the mothers abdomen and uterus. This procedure is performed when physicians determine it a safer alternative than a vaginal delivery for the mother, baby, or both."
+	},
 
-{
-	name: 'Amputation'
-}
+	{
+		"name": "Cholecystectomy",
+		"excerpt": "",
+		"description": "A cholecystectomy is surgery to remove the gallbladder (a pear-shaped sac near the right lobe of the liver that holds bile). A gallbladder may need to be removed if the organ is prone to troublesome gallstones, if it is infected, or becomes cancerous."
+	},
 
-{
-	name: 'In patient and day-case varicose vein surgery'
-}
+	{
+		"name": "Coronary artery bypass",
+		"excerpt": "",
+		"description": "Most commonly referred to as simply bypass surgery, this surgery is often performed in people who have angina (chest pain) and coronary artery disease (where plaque has built up in the arteries). During the surgery, a bypass is created by grafting a piece of a vein above and below the blocked area of a coronary artery, enabling blood to flow around the obstruction. Veins are usually taken from the leg, but arteries from the chest may also be used to create a bypass graft."
+	},
+
+	{
+		"name": "Dilation and curettage",
+		"excerpt": "",
+		"description": "A D&C is a minor operation in which the cervix is dilated (expanded) so that the cervical canal and uterine lining can be scraped with a curette (spoon-shaped instrument)."
+	},
+
+	{
+		"name":"Free skin graft",
+		"excerpt": "",
+		"description": "A skin graft involves detaching healthy skin from one part of the body to repair areas of lost or damaged skin in another part of the body. Skin grafts are often performed as a result of burns, injury, or surgical removal of diseased skin. They are most often performed when the area is too large to be repaired by stitching or natural healing."
+	},
+
+	{
+		"name": "Hemorrhoidectomy",
+		"excerpt": "",
+		"description": "A hemorrhoidectomy is the surgical removal of hemorrhoids, distended veins in the lower rectum or anus."
+	},
+
+	{
+		"name": "Hysterectomy",
+		"excerpt": "",
+		"description": "A hysterectomy is the surgical removal of a womans uterus. This may be performed either through an abdominal incision or vaginally."
+	},
+
+	{
+		"name": "Hysteroscopy",
+		"excerpt": "",
+		"description": "Hysteroscopy is a surgical procedure used to help diagnose and treat many uterine disorders. The hysteroscope (a viewing instrument inserted through the vagina for a visual examination of the canal of the cervix and the interior of the uterus) can transmit an image of the uterine canal and cavity to a television screen."
+	},
+
+	{
+		"name": "Inguinal hernia repair",
+		"excerpt": "",
+		"description": "Inguinal hernias are protrusions of part of the intestine into the muscles of the groin. Surgical repair pulls the intestine back to its original location."
+	},
+
+	{
+		"name": "Low back pain surgery",
+		"excerpt": "",
+		"description": "Low back pain can have various causes, including abnormal development of the backbone, stress on the back, injury, or a physical disorder that affects the bones of the spine. Usually, surgery is not considered until other options have been exhausted, including rest, medication, and mild exercise. The type of surgery performed on the back depends on the diagnosis."
+	},
+
+	{
+		"name": "Mastectomy",
+		"excerpt": "",
+		"description": "A mastectomy is the removal of all or part of the breast. Mastectomies are usually performed to treat breast cancer."
+	},
+
+	{
+		"name": "Prostatectomy",
+		"excerpt": "",
+		"description": "The surgical removal of all or part of the prostate gland, the sex gland in men that surrounds the neck of the bladder and urethra - the tube that carries urine away from the bladder. A prostatectomy may be performed for an enlarged prostate, benign prostatic hyperplasia (BPH), or if the prostate gland is cancerous."
+	},
+
+	{
+		"name": "Releasing of peritoneal adhesions",
+		"excerpt": "",
+		"description": "The peritoneum is a two-layered membrane that lines the wall of the abdominal cavity and covers abdominal organs. Sometimes, organs begin to adhere to the peritoneum, requiring surgery to detach them."
+	},
+
+	{
+		"name": "Tonsillectomy",
+		"excerpt": "",
+		"description": "The surgical removal of one or both tonsils. Tonsils are located at the back of the mouth and help fight infections."
+	}
+]
