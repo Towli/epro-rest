@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-/* create a schema for procedure model */
+/* Create a schema for procedure model */
 var procedureSchema = new Schema({
 	name: String,
 	excerpt: String,
@@ -9,6 +9,13 @@ var procedureSchema = new Schema({
 	department: String,
 	question_set: { type: Schema.Types.ObjectId, ref: 'QuestionSet' },
 });
+
+/* Converts the Procedure's description to an excerpt of 120 characters */
+procedureSchema.methods.description_to_excerpt = function () {
+	var excerpt = this.description.substring(0, 120);
+	excerpt += "...";
+	return excerpt;
+}
 
 procedureSchema.methods.questions_html_humanized = function() {
 	if (!this.question_set)

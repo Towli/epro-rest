@@ -16,7 +16,6 @@
 							<th>#</th>
 							<th>Name</th>
 							<th>Excerpt</th>
-							<th>Department</th>
 							<th></th>
 						</thead>
 						<tbody>					
@@ -29,11 +28,7 @@
 										<%= procedures[i].name %>
 									</td>
 									<td>
-										<%= procedures[i].excerpt %>
-									</td>
-									<td>
-										<%= procedures[i].department %>
-									</td>
+										<%= procedures[i].description_to_excerpt() %>
 									</td>
 									<td>
 										<a href="/procedures/<%= procedures[i]._id %>/edit"><button class="btn btn-primary btn-xs">Edit</button></a>
