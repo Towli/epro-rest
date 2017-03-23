@@ -9,7 +9,7 @@ $(document).ready(function(){
 			title : question_set.questions[i].title,
 			isRequired : true,
 			//colCount : 2,
-			choices : ["choice_1", "choice_2", "choice_3", "choice_4"]	// currently hard-coded, should in future be determined by the question_set JSON
+			choices : question_set.questions[i].choices	// currently hard-coded, should in future be determined by the question_set JSON
 		});
 	}
 	/* Convert into JSON to build survey model */
