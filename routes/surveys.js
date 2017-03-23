@@ -46,21 +46,6 @@ router.post('/surveys/new', function(req, res, next) {
 			console.log('Survey saved successfully.');
 			console.log(survey);
 		});
-
-		/* Write json to file */
-		/*survey = JSON.stringify(survey);
-		try {
-			fs.writeFile("public/survey.json", survey, function(err) {
-				if (err)
-					console.log(err);
-				else {
-					console.log("Survey JSON successfully written to file.");	
-					res.render('surveys/show');	
-				}
-			});
-		} catch (e) {
-			console.log('File stream error: '+e);
-		}*/
 		
 	});
 });
