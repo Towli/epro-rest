@@ -14,7 +14,10 @@ router.get('/surveys', function(req, res, next) {
 router.get('/surveys/new', function(req, res, next) {
 	Procedure.find({}, function(err, procedures) {
 		if (err) throw err;
-		res.render('surveys/new', { procedures : procedures });
+		Patient.find({}, function(err, patients) {
+			if (err) throw err;
+			res.render('surveys/new', { procedures : procedures, patients : patients });
+		});
 	});
 });
 
