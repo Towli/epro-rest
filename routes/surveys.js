@@ -77,10 +77,12 @@ router.get('/surveys/:id', function(req, res, next) {
 			model : 'Question'
 		}
 	})
+	.populate('patient')
 	.exec(function(err, survey) {
 		if (err) throw err;
 		question_set = survey.question_set;
-		res.render('surveys/show', { question_set: JSON.stringify(question_set) });
+		console.log(survey.patient);
+		res.render('surveys/show', { question_set: JSON.stringify(question_set), patient : survey.patient });
 	});
 });
 
