@@ -33,23 +33,25 @@ router.post('/surveys/new', function(req, res, next) {
 		}
 	}).exec(function(err, procedure) {
 		if (err) err;
+		Patient.findById(req.body.patient)
+		.exec(function(err, patient) {
+			/* Create survey */
+			var survey = new Survey ({
+				patient : patient,
+				question_set : procedure.question_set,
+				completed : false
+			});
 
-		/* Create survey */
-		var survey = new Survey ({
-			patient : null,
-			question_set : procedure.question_set,
-			completed : false
+			console.log(JSON.stringify(survey));
+			console.log("patient:" + patient);
+
+			/* Call the built-in save method to persist to db */
+			survey.save(function(err) {
+				if (err) throw err;
+				console.log('Survey saved successfully.');
+				console.log(survey);
+			});
 		});
-
-		console.log(JSON.stringify(survey));
-
-		/* Call the built-in save method to persist to db */
-		survey.save(function(err) {
-			if (err) throw err;
-			console.log('Survey saved successfully.');
-			console.log(survey);
-		});
-		
 	});
 });
 
