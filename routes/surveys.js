@@ -23,33 +23,29 @@ router.get('/surveys/new', function(req, res, next) {
 
 /* POST /surveys/new (on survey creation) */
 router.post('/surveys/new', function(req, res, next) {
-	/* Get procedure from req params */
-	Procedure.findById(req.body.procedure)
-	.populate({
-		path : 'question_set',
-		populate : {
-			path : 'questions',
-			model : 'Question'
-		}
-	}).exec(function(err, procedure) {
-		if (err) err;
-		Patient.findById(req.body.patient)
-		.exec(function(err, patient) {
-			/* Create survey */
-			var survey = new Survey ({
-				patient : patient,
-				question_set : procedure.question_set,
-				completed : false
-			});
-
-			console.log(JSON.stringify(survey));
-			console.log("patient:" + patient);
-
-			/* Call the built-in save method to persist to db */
-			survey.save(function(err) {
-				if (err) throw err;
-				console.log('Survey saved successfully.');
-				console.log(survey);
+	/* Check if Survey hasn't already been generated for the chosen patient */
+	Survey.count({patient: req.body.patient}, function(err, count) {
+		if (err) throw err;
+		if (count > 0)
+			res.redirect('new');
+		else
+		/* Get procedure from req params */
+		Procedure.findById(req.body.procedure)
+		.exec(function(err, procedure) {
+			if (err) throw err;
+			Patient.findById(req.body.patient)
+			.exec(function(err, patient) {
+				/* Create survey */
+				var survey = new Survey ({
+					patient : patient,
+					question_set : procedure.question_set,
+					completed : false
+				});
+				/* Call the built-in save method to persist to db */
+				survey.save(function(err) {
+					if (err) throw err;
+					res.redirect(survey._id);
+				});
 			});
 		});
 	});
