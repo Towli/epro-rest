@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Patient = require('../models/patient');
 var Procedure = require('../models/procedure');
+var Survey = require('../models/survey');
 
 /* GET /patients/ (index page) */
 router.get('/patients', function(req, res, next) {
@@ -53,7 +54,10 @@ router.get('/patients/:id', function(req, res) {
 	.populate('procedure')
 	.exec(function(err, patient) {
 		if (err) throw err;
-		res.render('patients/show', {patient : patient});
+		Survey.findOne({patient: patient}, function(err, survey) {
+			if (err) throw err;
+			res.render('patients/show', {patient : patient, survey : survey});
+		});
 	});
 });
 
