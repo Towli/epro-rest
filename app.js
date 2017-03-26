@@ -14,7 +14,8 @@ var Procedure = require('./models/procedure');
 var app = express();
 
 // connect to mongodb
-mongoose.connect('mongodb://localhost/epro');
+var config = require('./config.json')[app.get('env')];
+mongoose.connect(config.mongoURI);
 mongoose.Promise = Promise;
 
 // test connection

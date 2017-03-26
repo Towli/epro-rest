@@ -1,0 +1,14 @@
+{
+  "development": {
+    "mongoPort": 27017,
+    "mongoHost": "localhost/epro",
+    "mongoURI": "mongodb://localhost/epro",
+    "errorHandlerOptions": {"dumpExceptions": true, "showStack": true}
+  },
+  "production": {
+    "mongoPort": 39989,
+    "mongoHost": "mongodb://heroku_xkdhtcjw:t58ibn404f9klemuunbtl6mfrl@ds139989.mlab.com",
+    "mongoURI": "mongodb://heroku_xkdhtcjw:t58ibn404f9klemuunbtl6mfrl@ds139989.mlab.com:39989/heroku_xkdhtcjw",
+    "errorHandlerOptions": {"dumpExceptions": false, "showStack": false}
+  }
+}
