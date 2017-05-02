@@ -6,12 +6,16 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+var helmet = require('helmet');
 var index = require('./routes/index');
 var patients = require('./routes/patients');
 var procedures = require('./routes/procedures');
 var surveys = require('./routes/surveys');
 var Procedure = require('./models/procedure');
 var app = express();
+
+// use helmet early to ensure headers are sure to be set
+app.use(helmet());
 
 // connect to mongodb
 var config = require('./config.json')[app.get('env')];
