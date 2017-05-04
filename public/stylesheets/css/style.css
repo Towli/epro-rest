@@ -58,6 +58,8 @@ footer {
 .survey {
   color: #4db2ec;
   text-align: center; }
+  .survey h1, .survey h2, .survey h5 {
+    color: black; }
 
 /* Navigation */
 /* Top Navigation */

@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <style>
+    body {background-color: powderblue; margin: 0 2em 0 2em;}
+    .page-title { text-align: center; margin-bottom: 1em;}
+  </style>
+</head>
   <body>
-    <h1>Hello <%= patient.first_name %></h1>
+    <h1 class="page-title">Hello <%= patient.first_name %></h1>
     <p>Please follow the following link to complete your survey.</p>
-    <p><a href="http://epro-rest.herokuapp.com/surveys/<%= patient.survey_id %>">HERE</a></p>
+    <p><a href="http://localhost:3000/surveys/<%= patient.survey_id %>">HERE</a></p>
     <p>If you have any problems with the following link, please contact NNUH.</p>
   </body>
 </html>

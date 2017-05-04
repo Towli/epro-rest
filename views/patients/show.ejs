@@ -49,6 +49,7 @@
 				  	</div>
 				  	<div class="panel-body">
 				  		<% if (survey !== null) { %>
+				  			<a href="/mailer/<%= survey._id %>?id=<%=patient._id%>"><button class="btn btn-primary btn-xs">Deliver Survey</button></a>
 				  			<a href="/surveys/<%= survey._id %>"><button class="btn btn-primary btn-xs">View Survey</button></a>
 			  			<% } %>
 			  		</div>

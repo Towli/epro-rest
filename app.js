@@ -11,6 +11,7 @@ var index = require('./routes/index');
 var patients = require('./routes/patients');
 var procedures = require('./routes/procedures');
 var surveys = require('./routes/surveys');
+var mailer = require('./routes/mailer');
 var Procedure = require('./models/procedure');
 var app = express();
 
@@ -54,6 +55,7 @@ app.use(index);
 app.use(patients);
 app.use(procedures);
 app.use(surveys);
+app.use(mailer);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
