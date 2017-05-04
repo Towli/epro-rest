@@ -14,8 +14,8 @@ Mailer.prototype.initialiseTransporter = function() {
   this.transporter = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
-          user: "alextowli@gmail.com",
-          pass: "Alex7towli1114"
+          user: "hospitalmailer@gmail.com",
+          pass: "hospitalpassword123"
       }
   });
 }

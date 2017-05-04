@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var Mailer = require('../mailers/survey_mailer.js');
+var fs = require('fs');
+var ejs = require('ejs');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -8,15 +10,19 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/mailer', function(req, res, next) {
-  console.log("hello world");
-  var html = "<h1>Hi Alex</h1>";
-  html += "<p><a href=\"http://epro-rest.herokuapp.com/surveys/58d862131d41f7002a6a8891\">Your survey</a></p>";
+  var patient = {
+    first_name: "Harri",
+    last_name: "Cornes",
+    survey_id: "58d862131d41f7002a6a8891"
+  };
+
+  var compiledTemplate = ejs.compile(fs.readFileSync('./templates/survey_template.ejs', 'utf-8'));
   var surveyMailer = new Mailer();
   mailOptions = {
      from: 'arnold@schwarzenegger',
      to: 'alextowli@hotmail.co.uk',
      subject: 'Your survey',
-     html: html
+     html: compiledTemplate({patient: patient})
   };
   surveyMailer.setOptions(mailOptions);
   surveyMailer.sendMail();
