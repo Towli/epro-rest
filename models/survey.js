@@ -19,4 +19,8 @@ surveySchema.pre('save', function(next) {
 	next();
 });
 
+surveySchema.methods.created_at_humanized = function() {
+	return this.created_at.toDateString();
+}
+
 module.exports = mongoose.model('Survey', surveySchema);

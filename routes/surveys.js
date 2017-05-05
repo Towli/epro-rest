@@ -7,7 +7,12 @@ var fs = require('fs');
 
 /* GET /surveys/ (index page) */
 router.get('/surveys', function(req, res, next) {
-	res.render('surveys/index');
+	Survey.find({})
+	.populate('patient')
+	.exec(function(err, surveys) {
+		if (err) throw err;
+		res.render('surveys/index', { surveys: surveys });
+	});
 });
 
 /* GET /surveys/new (survey creation page) */
@@ -51,16 +56,6 @@ router.post('/surveys/new', function(req, res, next) {
 	});
 });
 
-/* GET /surveys/example1 (example survey page) */
-router.get('/surveys/example1', function(req, res, next) {
-	res.render('surveys/example');
-});
-
-/* GET /surveys/example2 (example survey page) */
-router.get('/surveys/example2', function(req, res, next) {
-	res.render('surveys/example2');
-});
-
 /* GET /surveys/:id (show survey) */
 router.get('/surveys/:id', function(req, res, next) {
 	var id = req.params.id;
@@ -80,6 +75,16 @@ router.get('/surveys/:id', function(req, res, next) {
 		console.log(survey.patient);
 		res.render('surveys/show', { question_set: JSON.stringify(question_set), patient : survey.patient });
 	});
+});
+
+/* GET /surveys/example1 (example survey page) */
+router.get('/surveys/example1', function(req, res, next) {
+	res.render('surveys/example');
+});
+
+/* GET /surveys/example2 (example survey page) */
+router.get('/surveys/example2', function(req, res, next) {
+	res.render('surveys/example2');
 });
 
 module.exports = router;

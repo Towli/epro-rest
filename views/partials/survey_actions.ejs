@@ -1,0 +1,13 @@
+<div class="dropdown">
+  <button class="btn btn-secondary btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    Actions
+  </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <form class="patient-actions" method="post">
+        <input type="hidden" name="id" value="<%= surveys[i]._id %>">
+        <button class="btn btn-danger btn-xs submit">Delete</button>
+      </form>
+    </div>
+</div>

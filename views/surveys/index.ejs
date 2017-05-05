@@ -10,10 +10,45 @@
 			<% include ../partials/side_nav %>
 			<div class="main-wrapper col-xs-9 col-xs-push-1">
 				<h1 class="pg-title">Surveys</h1>
-				<div class="btn-group-vertical button-group">
-					<a class="btn btn-primary" href="surveys/new">Create</a>
-					<a class="btn btn-primary" href="surveys/example1">Example 1</a>
-					<a class="btn btn-primary" href="surveys/example2">Example 2</a>
+				<div class="button-group">
+					<a href="surveys/new"><button class="btn btn-primary">Create</button></a>
+				</div>
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<th>#</th>
+							<th>Patient</th>
+							<th>Status</th>
+							<th>Urgency</th>
+							<th>Created At</th>
+							<th></th>
+						</thead>
+						<tbody>					
+							<% for(var i = 0; i < surveys.length; i++) { %>
+								<tr>
+									<td>
+										<%= i+1	 %>
+									</td>
+									<td>
+										<%= surveys[i].patient.full_name() %>
+									</td>
+									<td>
+										<div class="survey-status"><%= surveys[i].status %><div>
+									</td>
+									<td>
+										TODO
+									</td>
+									<td>
+										<%= surveys[i].created_at_humanized() %>
+									</td>
+									<td>
+										<a href="/surveys/<%= surveys[i]._id %>"><button class="btn btn-primary btn-xs">View</button></a>
+										<% include ../partials/survey_actions.ejs %>
+									</td>
+								</tr>
+							<% } %>
+						</tbody>
+					</table>
 				</div>
 				<footer>
 					<% include ../partials/footer %>
