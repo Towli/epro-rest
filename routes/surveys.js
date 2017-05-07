@@ -42,9 +42,10 @@ router.post('/surveys/new', function(req, res, next) {
 			.exec(function(err, patient) {
 				/* Create survey */
 				var survey = new Survey ({
-					patient : patient,
-					question_set : procedure.question_set,
-					completed : false
+					patient: patient,
+					question_set: procedure.question_set,
+					completed: false,
+					delivered: false
 				});
 				/* Call the built-in save method to persist to db */
 				survey.save(function(err) {

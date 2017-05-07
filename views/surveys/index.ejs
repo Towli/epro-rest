@@ -19,6 +19,7 @@
 							<th>#</th>
 							<th>Patient</th>
 							<th>Status</th>
+							<th>Delivered</th>
 							<th>Urgency</th>
 							<th>Created At</th>
 							<th></th>
@@ -33,7 +34,10 @@
 										<%= surveys[i].patient.full_name() %>
 									</td>
 									<td>
-										<div class="survey-status"><%= surveys[i].status %><div>
+										<div class="survey-status"><%= surveys[i].completion_status() %><div>
+									</td>
+									<td>
+										<div class="survey-status"><%= surveys[i].is_delivered() %><div>
 									</td>
 									<td>
 										TODO
@@ -43,6 +47,7 @@
 									</td>
 									<td>
 										<a href="/surveys/<%= surveys[i]._id %>"><button class="btn btn-primary btn-xs">View</button></a>
+										<a href="/mailer/<%= surveys[i]._id %>"><button class="btn btn-primary btn-xs">Deliver</button></a>
 										<% include ../partials/survey_actions.ejs %>
 									</td>
 								</tr>

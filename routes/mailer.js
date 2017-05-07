@@ -7,21 +7,25 @@ var Mailer = require('../mailers/survey_mailer.js');
 var fs = require('fs');
 var ejs = require('ejs');
 
+/* GET /mailer/survey_id for mailing a survey to a patient */
 router.get('/mailer/:survey_id', function(req, res, next) {
   var surveyMailer = new Mailer();
   var compiledTemplate = compileEmailTemplate();
-  Patient.findById(req.query.id, function(err, patient) {
-    patient.survey_id = req.params.survey_id;
+  Survey.findById(req.params.survey_id)
+  .populate('patient')
+  .exec(function (err, survey) {
     mailOptions = {
-       to: patient.contact.email,
+       to: survey.patient.contact.email,
        subject: 'Your survey',
-       html: compiledTemplate({patient: patient})
+       html: compiledTemplate({patient: survey.patient})
     };
     surveyMailer.setOptions(mailOptions);
-    surveyMailer.sendMail();
+    surveyMailer.sendMail(function() {
+      survey.delivered = true;
+      survey.save();
+    });
     res.redirect('/patients');
-  });
-  
+  });  
 });
 
 function compileEmailTemplate() {

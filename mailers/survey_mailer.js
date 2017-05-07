@@ -20,12 +20,13 @@ Mailer.prototype.initialiseTransporter = function() {
   });
 }
 
-Mailer.prototype.sendMail = function() {
+Mailer.prototype.sendMail = function(callback) {
   this.transporter.sendMail(mailOptions, function(error, info) {
     if (error) throw err;
     console.log('Message %s sent: %s', info.messageId, info.response);
     transporter.close();
   });
+  callback();
 }
 
 Mailer.prototype.setSender = function(sender) {

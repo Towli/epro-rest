@@ -6,6 +6,7 @@ var surveySchema = new Schema({
 	patient: { type: Schema.Types.ObjectId, ref: 'Patient' },
 	question_set: { type: Schema.Types.ObjectId, ref: 'QuestionSet' },
 	completed: Boolean,
+	delivered: Boolean,
 	created_at: Date,
 	completed_at: Date
 });
@@ -21,6 +22,21 @@ surveySchema.pre('save', function(next) {
 
 surveySchema.methods.created_at_humanized = function() {
 	return this.created_at.toDateString();
+}
+
+surveySchema.methods.completed_at_humanized = function() {
+	return this.completed_at.toDateString();
+}
+
+surveySchema.methods.completion_status = function() {
+	if (this.completed)
+		return "Complete"
+	else
+		return "Incomplete"
+}
+
+surveySchema.methods.is_delivered = function() {
+	return this.delivered;
 }
 
 module.exports = mongoose.model('Survey', surveySchema);
