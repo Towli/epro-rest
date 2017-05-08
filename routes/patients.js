@@ -61,6 +61,39 @@ router.get('/patients/:id', function(req, res) {
 	});
 });
 
+/* GET /patients/:id/edit (edit patient page) */
+router.get('/patients/:id/edit', function(req, res) {
+	var id = req.params.id;	
+	Procedure.find({}, function(err, procedures) {
+		if (err) throw err;
+		Patient.findById(id)
+		.populate('procedure')
+		.exec(function(err, patient) {
+			if (err) throw err;
+			res.render('patients/edit', {patient : patient, procedures: procedures});
+		});
+	});
+});
+
+router.post('/patients/:id/edit', function(req, res) {
+	/* Update patient from req params */
+	Patient.findOneAndUpdate({ _id: req.params.id }, {
+		first_name: req.body.first_name,
+		last_name: req.body.last_name,
+		dob: req.body.dob,
+		gender: req.body.gender,
+		contact: { 
+			phone: req.body.phone,
+			email: req.body.email 
+		},
+		procedure: req.body.procedure
+	}, function(err, raw) {
+		if (err) throw err;
+		console.log('Patient updated successfully.' + raw);
+		res.redirect('/patients/'+req.params.id);
+	});
+});
+
 /* DELETE /patients/:id */
 router.post('/patients', function(req, res, next) {
 	var id = req.body.id;

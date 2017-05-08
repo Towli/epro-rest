@@ -39,6 +39,14 @@ patientSchema.methods.dob_humanized = function() {
 	return this.dob.toDateString();
 }
 
+patientSchema.methods.dob_form_format = function() {
+	var day = ('0' + this.dob.getDate()).slice(-2);
+	var month = ('0' + (this.dob.getMonth()+1)).slice(-2);
+	var dob_form_format = this.dob.getFullYear() + 
+	"-" + month + "-" + day;
+	return dob_form_format;
+}
+
 patientSchema.methods.age = function() {
 	var current_date = new Date();
 	var current_year = current_date.getFullYear();
