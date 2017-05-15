@@ -10,32 +10,32 @@
 			<% include ../partials/side_nav %>	
 			<div class="main-wrapper col-xs-9 col-xs-push-1">
 				<h1 class="pg-title">Procedures</h1>
-				<div class="table-responsive">
+				<div class="table-responsive fixed-height">
 					<table class="table table-hover">
-						<thead>
+						<thead class="sticky-header">
 							<th>#</th>
 							<th>Name</th>
 							<th>Excerpt</th>
 							<th></th>
 						</thead>
-						<tbody>					
-							<% for(var i = 0; i < procedures.length; i++) { %>
-								<tr>
-									<td>
-										<%= i+1	 %>
-									</td>
-									<td>
-										<%= procedures[i].name %>
-									</td>
-									<td>
-										<%= procedures[i].description_to_excerpt() %>
-									</td>
-									<td>
-										<a href="/procedures/<%= procedures[i]._id %>/edit"><button class="btn btn-primary btn-xs">Edit</button></a>
-									</td>
-								</tr>
-							<% } %>
-						</tbody>
+							<tbody>					
+								<% for(var i = 0; i < procedures.length; i++) { %>
+									<tr>
+										<td>
+											<%= i+1	 %>
+										</td>
+										<td>
+											<%= procedures[i].name %>
+										</td>
+										<td>
+											<%= procedures[i].description_to_excerpt() %>
+										</td>
+										<td>
+											<a href="/procedures/<%= procedures[i]._id %>/edit"><button class="btn btn-primary btn-xs">Edit</button></a>
+										</td>
+									</tr>
+								<% } %>
+							</tbody>
 					</table>
 				</div>
 				<footer>
