@@ -9,7 +9,7 @@
 		<div class="container">
 			<% include ../partials/side_nav %>
 			<div class="main-wrapper col-xs-9 col-xs-push-1">
-				<h1 class="pg-title">Procedure Edit</h1>
+				<h1 class="pg-title">Edit Procedure</h1>
 
 				<div class="panel panel-default">
 				  <div class="panel-heading">
@@ -24,7 +24,7 @@
 				  <div class="panel-heading">
 				  	<h3 class="panel-title">Question Set</h3>
 				  </div>
-				  <div class="panel-body">
+				  <div class="panel-body question-set-list">
 				  	<%- procedure.questions_html_humanized() %>
 				  </div>
 			  	</div>
@@ -33,7 +33,7 @@
 				  <div class="panel-heading">
 					  <h3 class="panel-title">Assign Questions</h3>
 				  </div>
-				  	<div class="panel-body">
+				  	<div class="panel-body question-set-list">
 					  <form class="form-primary" method="post">
 					  	<% for (var i = 0; i < questions.length; i++) { %>
 					  		<input type="checkbox" name="questions" value="<%= questions[i]._id %>"> <%= questions[i].title %>

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html, body {
   height: 100%;
   background-color: #f8f8f8; }
@@ -77,3 +78,9 @@ footer {
 /* Tables */
 .fixed-height {
   max-height: 30em; }
+
+/* Procedures */
+.question-set-list {
+  text-align: initial; }
+  .question-set-list p:before {
+    content: "• "; }

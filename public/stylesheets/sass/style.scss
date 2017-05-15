@@ -100,3 +100,11 @@ footer {
 .fixed-height {
 	max-height: 30em;
 }
+
+/* Procedures */
+.question-set-list {
+  text-align: initial;
+  p:before {
+  	content: "• ";
+  }
+}
