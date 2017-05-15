@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www --ignore 'public/*.json'; npm run watch-css",
+    "start": "nodemon ./bin/www --ignore 'public/*.json' | npm run watch-css;",
     "seed-patients": "mongoimport --db epro --collection patients --drop --file seeds/patients.json",
     "seed-procedures": "mongoimport  --jsonArray --db epro --collection procedures --drop --file seeds/procedures.json",
     "seed-questions": "mongoimport --db epro --collection questions --drop --file seeds/questions.json",

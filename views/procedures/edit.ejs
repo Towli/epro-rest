@@ -18,7 +18,7 @@
 				  <div class="panel-body">
 					  <h3><%= procedure.name %></h3>
 				  </div>
-			  	</div>
+		  	</div>
 
 				<div class="panel panel-default">
 				  <div class="panel-heading">
@@ -26,27 +26,20 @@
 				  </div>
 				  <div class="panel-body question-set-list">
 				  	<%- procedure.questions_html_humanized() %>
+				  	<div class="new-question-container">
+				  			<select class="form-control" id="new-question-select">
+							  	<% for (var i = 0; i < questions.length; i++) { %>
+							  		<option value="<%= questions[i]._id %>"><%= questions[i].title %></option>
+							  	<% } %>
+						  	</select>
+						  	<button type="submit" class="btn btn-primary" id="question-add">Add</button>
+				  	</div>
+				  	<a class="btn btn-primary new-question">Add a question</a>
 				  </div>
-			  	</div>
-
-			  	<div class="panel panel-default">
-				  <div class="panel-heading">
-					  <h3 class="panel-title">Assign Questions</h3>
-				  </div>
-				  	<div class="panel-body question-set-list">
-					  <form class="form-primary" method="post">
-					  	<% for (var i = 0; i < questions.length; i++) { %>
-					  		<input type="checkbox" name="questions" value="<%= questions[i]._id %>"> <%= questions[i].title %>
-					  		</br>
-					  	<% } %>
-					  	<button type="submit" class="btn btn-primary">Assign questions</button>
-					  </form>
-  					</div>
-				  </div>
-	  				<footer>
+	  		</div>
+				<footer>
 						<% include ../partials/footer %>
-					</footer>
-				</div>
+				</footer>
 			</div>
 		</div>
 	</body>

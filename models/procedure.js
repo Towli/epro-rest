@@ -21,10 +21,11 @@ procedureSchema.methods.questions_html_humanized = function() {
 	if (!this.question_set)
 		return "<p>Question set has not been assigned.</p>";
 	else {
-		var questions_html = "";
+		var questions_html = "<ul>";
 		for (var i = 0; i < this.question_set.questions.length; i++) {
-			questions_html += "<p>"+this.question_set.questions[i].title+"</p>";
+			questions_html += "<li>"+this.question_set.questions[i].title+"</li>";
 		}
+		questions_html += "</ul>"
 		return questions_html;
 	}
 }

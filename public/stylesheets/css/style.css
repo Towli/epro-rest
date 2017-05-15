@@ -80,6 +80,9 @@ footer {
   max-height: 30em; }
 
 /* Procedures */
+.new-question-container {
+  display: none; }
+
 .question-set-list {
   text-align: initial; }
   .question-set-list p:before {
