@@ -1,15 +1,16 @@
 $(document).ready(function(){
 	var question_set = JSON.parse($('#questions-json').attr('value'));
+	console.log(question_set);
 	// Get Survey from JSON file
 	var survey_builder = [];
-	for (var i = 0; i < question_set.questions.length; i++) {
+	for (var i = 0; i < question_set.length; i++) {
 		survey_builder.push({
 			name : "Question " + i,
 			type : "radiogroup",
-			title : question_set.questions[i].title,
+			title : question_set[i].title,
 			isRequired : true,
 			//colCount : 2,
-			choices : question_set.questions[i].choices	// currently hard-coded, should in future be determined by the question_set JSON
+			choices : question_set[i].choices	// currently hard-coded, should in future be determined by the question_set JSON
 		});
 	}
 	/* Convert into JSON to build survey model */

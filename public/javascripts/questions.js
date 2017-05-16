@@ -17,7 +17,9 @@ $(document).ready(function(){
   function addQuestion(){
     var selectedQuestion = $('#new-question-select option:selected');
     var questionTitle = selectedQuestion.text();
-    questionsContainer.append("<li>"+questionTitle+"</li>");
+    var questionID = selectedQuestion.val();
+    var hiddenInputField = "<input type=\"hidden\" name=\"question\" value=\""+ questionID +"\">";
+    questionsContainer.append("<li>" + questionTitle + hiddenInputField + "</li>");
     newQuestionContainer.hide();
     newQuestionBtn.show();
   }

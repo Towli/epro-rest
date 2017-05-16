@@ -11,13 +11,15 @@ var ejs = require('ejs');
 router.get('/mailer/:survey_id', function(req, res, next) {
   var surveyMailer = new Mailer();
   var compiledTemplate = compileEmailTemplate();
-  Survey.findById(req.params.survey_id)
+  var survey_id = req.params.survey_id;
+  
+  Survey.findById(survey_id)
   .populate('patient')
   .exec(function (err, survey) {
     mailOptions = {
        to: survey.patient.contact.email,
        subject: 'Your survey',
-       html: compiledTemplate({patient: survey.patient})
+       html: compiledTemplate({patient: survey.patient, survey_id: survey_id})
     };
     surveyMailer.setOptions(mailOptions);
     surveyMailer.sendMail(function() {

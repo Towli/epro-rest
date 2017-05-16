@@ -34,7 +34,7 @@ router.post('/patients/new', function(req, res, next) {
 			email: req.body.email 
 		},
 		procedure: req.body.procedure,
-		surveyed: false	// TODO functionality
+		surveyed: false
 	});
 
 	/* Call the built-in save method to persist to db */

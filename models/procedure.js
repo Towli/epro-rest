@@ -7,7 +7,7 @@ var procedureSchema = new Schema({
 	excerpt: String,
 	description: String,
 	department: String,
-	question_set: { type: Schema.Types.ObjectId, ref: 'QuestionSet' },
+	questions : [{type: Schema.Types.ObjectId, ref: 'Question'}]
 });
 
 /* Converts the Procedure's description to an excerpt of 120 characters */
@@ -18,12 +18,32 @@ procedureSchema.methods.description_to_excerpt = function () {
 }
 
 procedureSchema.methods.questions_html_humanized = function() {
-	if (!this.question_set)
+	if (!this.questions)
 		return "<p>Question set has not been assigned.</p>";
 	else {
+		var questions = this.questions;
 		var questions_html = "<ul>";
-		for (var i = 0; i < this.question_set.questions.length; i++) {
-			questions_html += "<li>"+this.question_set.questions[i].title+"</li>";
+		var id = "";
+		for (var i = 0; i < questions.length; i++) {
+			id = this.questions[i]._id;
+			questions_html += "<li value=\""+id+"\">"+questions[i].title+"</li>";
+		}
+		questions_html += "</ul>"
+		return questions_html;
+	}
+}
+
+procedureSchema.methods.questions_html_formized = function() {
+	if (!this.questions)
+		return "<ul>Question set has not been assigned.</ul>";
+	else {
+		var questions = this.questions;
+		var questions_html = "<ul>";
+		var id = "";
+		for (var i = 0; i < questions.length; i++) {
+			id = this.questions[i]._id;
+			questions_html += "<li>"+questions[i].title+
+			"<input type=\"hidden\" name=\"question\" value=\""+id+"\"</li>";
 		}
 		questions_html += "</ul>"
 		return questions_html;

@@ -43,7 +43,7 @@ router.post('/surveys/new', function(req, res, next) {
 				/* Create survey */
 				var survey = new Survey ({
 					patient: patient,
-					question_set: procedure.question_set,
+					questions: procedure.questions,
 					completed: false,
 					delivered: false
 				});
@@ -62,18 +62,12 @@ router.get('/surveys/:id', function(req, res, next) {
 	var id = req.params.id;
 	var question_set;
 	Survey.findById(id)
-	.populate({
-		path : 'question_set',
-		populate : {
-			path : 'questions',
-			model : 'Question'
-		}
-	})
+	.populate('questions')
 	.populate('patient')
 	.exec(function(err, survey) {
 		if (err) throw err;
-		question_set = survey.question_set;
-		console.log(survey.patient);
+		question_set = survey.questions;
+		console.log(survey.questions);
 		res.render('surveys/show', { question_set: JSON.stringify(question_set), patient : survey.patient });
 	});
 });

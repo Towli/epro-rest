@@ -25,16 +25,19 @@
 				  	<h3 class="panel-title">Question Set</h3>
 				  </div>
 				  <div class="panel-body question-set-list">
-				  	<%- procedure.questions_html_humanized() %>
-				  	<div class="new-question-container">
-				  			<select class="form-control" id="new-question-select">
-							  	<% for (var i = 0; i < questions.length; i++) { %>
-							  		<option value="<%= questions[i]._id %>"><%= questions[i].title %></option>
-							  	<% } %>
-						  	</select>
-						  	<button type="submit" class="btn btn-primary" id="question-add">Add</button>
-				  	</div>
-				  	<a class="btn btn-primary new-question">Add a question</a>
+				  	<form class="form-primary" method="post">
+					  	<%- procedure.questions_html_formized() %>
+					  	<div class="new-question-container">
+					  			<select class="form-control" id="new-question-select">
+								  	<% for (var i = 0; i < questions.length; i++) { %>
+								  		<option value="<%= questions[i]._id %>"><%= questions[i].title %></option>
+								  	<% } %>
+							  	</select>
+							  	<button type="button" class="btn btn-primary" id="question-add">Add</button>
+					  	</div>
+					  	<a class="btn btn-primary new-question">Add a question</a>
+				  		<button type="submit" class="btn btn-primary save">Save</a>
+				  	</form>
 				  </div>
 	  		</div>
 				<footer>
