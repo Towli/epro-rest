@@ -47,7 +47,7 @@
 										<a href="/patients/<%= patients[i]._id %>/edit"><button class="btn btn-primary btn-xs">Edit</button></a>
 										<form class="patient-actions" method="post">
 											<input type="hidden" name="id" value="<%= patients[i]._id %>">
-											<button class="btn btn-danger btn-xs submit">Delete</button>
+											<button class="btn btn-danger btn-xs submit" onclick="return confirm('Are you sure?')">Delete</button>
 										</form>
 									</td>
 								</tr>

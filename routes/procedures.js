@@ -23,7 +23,7 @@ router.get('/procedures/:id/edit', function(req, res, next) {
 		/* Find all questions */
 		Question.find({}, function(err, questions) {
 			if (err) throw err;
-			res.render('procedures/edit', {procedure : procedure, questions : questions});
+			res.render('procedures/edit', {procedure : procedure, questions : questions, flash: req.flash()});
 		});
 	});
 });
@@ -40,6 +40,7 @@ router.post('/procedures/:id/edit', function(req, res, next) {
 		console.log(procedure);
 		procedure.save(function(err, updated_procedure) {
 			if (err) throw err;
+			req.flash('success', 'Procedure successfully updated.');
 			res.redirect('/procedures/'+id+'/edit');
 		});
 	});
