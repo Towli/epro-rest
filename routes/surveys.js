@@ -21,7 +21,7 @@ router.get('/surveys/new', function(req, res, next) {
 		if (err) throw err;
 		Patient.find({}, function(err, patients) {
 			if (err) throw err;
-			res.render('surveys/new', { procedures : procedures, patients : patients });
+			res.render('surveys/new', { procedures : procedures, patients : patients, flash: req.flash()});
 		});
 	});
 });
@@ -31,28 +31,26 @@ router.post('/surveys/new', function(req, res, next) {
 	/* Check if Survey hasn't already been generated for the chosen patient */
 	Survey.count({patient: req.body.patient}, function(err, count) {
 		if (err) throw err;
-		if (count > 0)
+		if (count > 0) {
+			req.flash('danger', 'This patient already has a generated Survey.');
 			res.redirect('new');
+		} 
 		else
-		/* Get procedure from req params */
-		Procedure.findById(req.body.procedure)
-		.exec(function(err, procedure) {
-			if (err) throw err;
-			Patient.findById(req.body.patient)
-			.exec(function(err, patient) {
-				/* Create survey */
-				var survey = new Survey ({
-					patient: patient,
-					questions: procedure.questions,
-					completed: false,
-					delivered: false
-				});
-				/* Call the built-in save method to persist to db */
-				survey.save(function(err) {
-					if (err) throw err;
-					req.flash('success', 'Survey for: ' + patient.full_name() + ' generated succesfully.');
-					res.redirect(survey._id);
-				});
+		Patient.findById(req.body.patient)
+		.populate('procedure')
+		.exec(function(err, patient) {
+			/* Create survey */
+			var survey = new Survey ({
+				patient: patient,
+				questions: patient.procedure.questions,
+				completed: false,
+				delivered: false
+			});
+			/* Call the built-in save method to persist to db */
+			survey.save(function(err) {
+				if (err) throw err;
+				req.flash('success', 'Survey for: ' + patient.full_name() + ' generated succesfully.');
+				res.redirect(survey._id);
 			});
 		});
 	});
