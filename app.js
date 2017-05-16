@@ -12,7 +12,8 @@ var patients = require('./routes/patients');
 var procedures = require('./routes/procedures');
 var surveys = require('./routes/surveys');
 var mailer = require('./routes/mailer');
-var Procedure = require('./models/procedure');
+var flash = require('connect-flash');
+var session = require('express-session');
 var app = express();
 
 // use helmet early to ensure headers are sure to be set
@@ -39,7 +40,6 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(require('node-sass-middleware')({
   src: path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
@@ -47,6 +47,11 @@ app.use(require('node-sass-middleware')({
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// flashes
+app.use(cookieParser('abc'));
+app.use(session({cookie: { maxAge: 60000 }}));
+app.use(flash());
 
 // fetch scripts from node_modules directory
 app.use('/js', express.static(__dirname + '/node_modules/survey-jquery/'));    

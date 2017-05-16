@@ -9,7 +9,7 @@ router.get('/patients', function(req, res, next) {
 	/* Find all patients */
 	Patient.find({}, function(err, patients) {
 		if (err) throw err;
-		res.render('patients/index', {patients : patients});
+		res.render('patients/index', {patients : patients, flash: req.flash()});
 	});
 });
 
@@ -40,11 +40,9 @@ router.post('/patients/new', function(req, res, next) {
 	/* Call the built-in save method to persist to db */
 	patient.save(function(err) {
 		if (err) throw err;
-		console.log('Patient saved successfully.');
-		console.log(patient);
+		req.flash('success', 'Patient successfully created!');
+		res.redirect('/patients');
 	});
-
-	res.redirect('/patients');
 });
 
 /* GET /patients/:id (show patient page) */
@@ -56,7 +54,7 @@ router.get('/patients/:id', function(req, res) {
 		if (err) throw err;
 		Survey.findOne({patient: patient}, function(err, survey) {
 			if (err) throw err;
-			res.render('patients/show', {patient : patient, survey : survey});
+			res.render('patients/show', {patient : patient, survey : survey, flash: req.flash()});
 		});
 	});
 });
@@ -89,7 +87,7 @@ router.post('/patients/:id/edit', function(req, res) {
 		procedure: req.body.procedure
 	}, function(err, raw) {
 		if (err) throw err;
-		console.log('Patient updated successfully.' + raw);
+		req.flash('success', 'Patient updated successfully.');
 		res.redirect('/patients/'+req.params.id);
 	});
 });
@@ -99,6 +97,7 @@ router.post('/patients', function(req, res, next) {
 	var id = req.body.id;
 	console.log("id = "+id);
 	Patient.findByIdAndRemove(id, function(err, patient) {
+		req.flash('success', 'Patient deleted successfully.');
 		res.redirect('/patients');
 	});
 });

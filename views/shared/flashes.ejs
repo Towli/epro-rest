@@ -1,0 +1,7 @@
+<% if (typeof flash != 'undefined') { %>
+  <% for (var key in flash) { %>
+    <div class="alert alert-<%= key %>">
+      <%= flash[key] %>
+    </div>
+  <% } %>
+<% } %>
