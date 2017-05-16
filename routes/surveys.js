@@ -50,6 +50,7 @@ router.post('/surveys/new', function(req, res, next) {
 				/* Call the built-in save method to persist to db */
 				survey.save(function(err) {
 					if (err) throw err;
+					req.flash('success', 'Survey for: ' + patient.full_name() + ' generated succesfully.');
 					res.redirect(survey._id);
 				});
 			});
@@ -68,7 +69,8 @@ router.get('/surveys/:id', function(req, res, next) {
 		if (err) throw err;
 		question_set = survey.questions;
 		console.log(survey.questions);
-		res.render('surveys/show', { question_set: JSON.stringify(question_set), patient : survey.patient });
+		res.render('surveys/show', { question_set: JSON.stringify(question_set),
+		 patient : survey.patient, flash: req.flash() });
 	});
 });
 

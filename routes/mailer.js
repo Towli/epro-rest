@@ -25,8 +25,9 @@ router.get('/mailer/:survey_id', function(req, res, next) {
     surveyMailer.sendMail(function() {
       survey.delivered = true;
       survey.save();
+      req.flash('success', 'Survey delivered successfully.');
+      res.redirect('/patients');
     });
-    res.redirect('/patients');
   });  
 });
 

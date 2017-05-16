@@ -5,6 +5,7 @@
 	<body>
 		<input type="hidden" id="questions-json" value="<%= question_set %>" />
 		<div class="main-wrapper col-xs-8 col-xs-push-2 survey">
+			<% include ../shared/flashes %>
 			<h1 class="pg-title">Generated Survey</h1>
 			<h2><%= patient.full_name() %></h2>
 			<hr>
