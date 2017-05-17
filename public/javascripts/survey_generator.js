@@ -1,6 +1,8 @@
 $(document).ready(function(){
+	var pathname = window.location.pathname;
+	console.log(pathname);
 	var question_set = JSON.parse($('#questions-json').attr('value'));
-	console.log(question_set);
+	
 	// Get Survey from JSON file
 	var survey_builder = [];
 	for (var i = 0; i < question_set.length; i++) {
@@ -24,9 +26,11 @@ $(document).ready(function(){
 
 	function sendDataToServer(survey) {
 		var resultAsString = JSON.stringify(survey.data);
-  		$("#results").append("<h3>JSON Results</h3>");
-  		$("#results").append(resultAsString);
+		$.post(pathname, { results: resultAsString }).done(function(status) {
+			$("#notifier").append(status);
+    });
 	}
 
 	$("#surveyElement").Survey({model:survey, onComplete:sendDataToServer});
+
 });

@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 /* create a schema for procedure model */
 var surveySchema = new Schema({
 	patient: { type: Schema.Types.ObjectId, ref: 'Patient' },
-	questions : [{type: Schema.Types.ObjectId, ref: 'Question'}],
+	questions: [{type: Schema.Types.ObjectId, ref: 'Question'}],
+	results: Object,
 	completed: Boolean,
 	delivered: Boolean,
 	created_at: Date,
@@ -22,6 +23,12 @@ surveySchema.pre('save', function(next) {
 
 surveySchema.methods.created_at_humanized = function() {
 	return this.created_at.toDateString();
+}
+
+surveySchema.methods.complete = function() {
+	var currentDate = new Date();
+	this.completed = true;
+	this.completed_at = currentDate;
 }
 
 surveySchema.methods.completed_at_humanized = function() {

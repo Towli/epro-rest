@@ -72,6 +72,22 @@ router.get('/surveys/:id', function(req, res, next) {
 	});
 });
 
+/* POST /surveys/:id (survey completion) */
+router.post('/surveys/:id', function(req, res, next) {
+	var id = req.params.id;
+	var results = JSON.parse(req.body.results);
+	Survey.findById(id, function (err, survey) {
+		if (err) throw err;
+		survey.results = results;
+		survey.complete();
+		/* Call the built-in save method to persist to db */
+		survey.save(function(err) {
+			if (err) throw err;
+			res.end("Results saved.");
+		});
+	});
+});
+
 /* GET /surveys/example1 (example survey page) */
 router.get('/surveys/example1', function(req, res, next) {
 	res.render('surveys/example');

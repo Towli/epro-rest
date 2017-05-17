@@ -52,6 +52,8 @@ footer {
   text-align: left; }
   #surveyElement h5 {
     font-size: 20px; }
+  #surveyElement h3 {
+    text-align: center; }
   #surveyElement .panel-footer {
     text-align: center; }
 
