@@ -65,8 +65,10 @@ router.get('/surveys/:id', function(req, res, next) {
 	.populate('patient')
 	.exec(function(err, survey) {
 		if (err) throw err;
-		question_set = survey.questions;
 		let backURL = req.header('Referer') || null;
+		if (survey.is_complete())
+			res.redirect('/surveys/'+id+'/results');
+		question_set = survey.questions;
 		res.render('surveys/show', { question_set: JSON.stringify(question_set),
 			patient : survey.patient, flash: req.flash(), backURL: backURL });
 	});
@@ -79,7 +81,8 @@ router.get('/surveys/:id/results', function(req, res, next) {
 	.populate('patient')
 	.exec(function(err, survey) {
 		if (err) throw err;
-		res.render('surveys/results', {survey: survey, patient : survey.patient });
+		let backURL = req.header('Referer') || null;
+		res.render('surveys/results', { survey: survey, patient : survey.patient, backURL: backURL });
 	});
 });
 

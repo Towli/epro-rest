@@ -5,6 +5,7 @@
   <body>
     <div class="main-wrapper col-xs-8 col-xs-push-2 survey">
       <% include ../shared/flashes %>
+      <a class="back-link" href="<%= backURL %>"> &larr; Go back</a>
       <h1 class="pg-title">Survey Results</h1>
       <h2><%= patient.full_name() %></h2>
       <hr>
