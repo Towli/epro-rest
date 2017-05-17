@@ -105,12 +105,13 @@ footer {
 .new-question-container {
 	display: none;
 	select {
-		float: right;
+		float: left;
 		width: 80%;
 		display: inline-block;
+		margin-left: 7.5%;
 	}
 	button {
-		margin-left: 7.5%;
+		float: right;	
 	}
 }
 

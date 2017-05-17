@@ -82,11 +82,12 @@ footer {
 .new-question-container {
   display: none; }
   .new-question-container select {
-    float: right;
+    float: left;
     width: 80%;
-    display: inline-block; }
-  .new-question-container button {
+    display: inline-block;
     margin-left: 7.5%; }
+  .new-question-container button {
+    float: right; }
 
 .question-remove {
   margin-right: 2.5%; }
