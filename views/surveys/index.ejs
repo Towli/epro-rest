@@ -9,6 +9,7 @@
 		<div class="container">
 			<% include ../partials/side_nav %>
 			<div class="main-wrapper col-xs-9 col-xs-push-1">
+				<% include ../shared/flashes %>
 				<h1 class="pg-title">Surveys</h1>
 				<div class="button-group">
 					<a href="surveys/new"><button class="btn btn-primary">Create</button></a>
@@ -48,6 +49,10 @@
 									<td>
 										<a href="/surveys/<%= surveys[i]._id %>"><button class="btn btn-primary btn-xs">View</button></a>
 										<a href="/mailer/<%= surveys[i]._id %>"><button class="btn btn-primary btn-xs">Deliver</button></a>
+										<form class="survey-actions" method="post">
+											<input type="hidden" name="id" value="<%= surveys[i]._id %>">
+											<button class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')">Delete</button>
+										</form>
 									</td>
 								</tr>
 							<% } %>

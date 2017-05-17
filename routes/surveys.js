@@ -11,7 +11,7 @@ router.get('/surveys', function(req, res, next) {
 	.populate('patient')
 	.exec(function(err, surveys) {
 		if (err) throw err;
-		res.render('surveys/index', { surveys: surveys });
+		res.render('surveys/index', { surveys: surveys, flash: req.flash()});
 	});
 });
 
@@ -94,6 +94,15 @@ router.post('/surveys/:id', function(req, res, next) {
 			if (err) throw err;
 			res.end("Results saved.");
 		});
+	});
+});
+
+/* DELETE /surveys/:id */
+router.post('/surveys', function(req, res, next) {
+	var id = req.body.id;
+	Survey.findByIdAndRemove(id, function(err, survey) {
+		req.flash('success', 'Survey deleted successfully.');
+		res.redirect('/surveys');
 	});
 });
 

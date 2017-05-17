@@ -38,8 +38,12 @@ a {
 	margin-top: 20px;
 }
 
-.patient-actions {
+.patient-actions, .survey-actions {
 	display: inline;
+	button {
+		background: none;
+		color: red;
+	}
 }
 
 @media (max-width: 768px) {

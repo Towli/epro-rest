@@ -31,8 +31,11 @@ a {
   text-align: center;
   margin-top: 20px; }
 
-.patient-actions {
+.patient-actions, .survey-actions {
   display: inline; }
+  .patient-actions button, .survey-actions button {
+    background: none;
+    color: red; }
 
 @media (max-width: 768px) {
   .button-group {
