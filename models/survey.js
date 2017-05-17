@@ -46,4 +46,8 @@ surveySchema.methods.is_delivered = function() {
 	return this.delivered;
 }
 
+surveySchema.methods.is_complete = function() {
+	return this.completed;
+}
+
 module.exports = mongoose.model('Survey', surveySchema);

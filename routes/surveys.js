@@ -66,9 +66,19 @@ router.get('/surveys/:id', function(req, res, next) {
 	.exec(function(err, survey) {
 		if (err) throw err;
 		question_set = survey.questions;
-		console.log(survey.questions);
 		res.render('surveys/show', { question_set: JSON.stringify(question_set),
-		 patient : survey.patient, flash: req.flash() });
+			patient : survey.patient, flash: req.flash() });
+	});
+});
+
+/* GET /surveys/:id/results (show survey results) */
+router.get('/surveys/:id/results', function(req, res, next) {
+	var id = req.params.id;
+	Survey.findById(id)
+	.populate('patient')
+	.exec(function(err, survey) {
+		if (err) throw err;
+		res.render('surveys/results', {survey: survey, patient : survey.patient });
 	});
 });
 
@@ -80,7 +90,6 @@ router.post('/surveys/:id', function(req, res, next) {
 		if (err) throw err;
 		survey.results = results;
 		survey.complete();
-		/* Call the built-in save method to persist to db */
 		survey.save(function(err) {
 			if (err) throw err;
 			res.end("Results saved.");
