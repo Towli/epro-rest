@@ -104,11 +104,24 @@ footer {
 /* Procedures */
 .new-question-container {
 	display: none;
+	select {
+		float: right;
+		width: 80%;
+		display: inline-block;
+	}
+	button {
+		margin-left: 7.5%;
+	}
+}
+
+.question-remove {
+	margin-right: 2.5%;
 }
 
 .question-set-list {
   text-align: initial;
-  p:before {
-  	content: "• ";
+  margin: auto;
+  ul {
+  	list-style-type: none;
   }
 }

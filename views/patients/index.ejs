@@ -31,7 +31,7 @@
 										<%= i+1	 %>
 									</td>
 									<td>
-										<%= patients[i].full_name() %>
+										<a href="/patients/<%= patients[i]._id %>"><%= patients[i].full_name() %></a>
 									</td>
 									<td>
 										<%= patients[i].dob_humanized() %>

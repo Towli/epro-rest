@@ -11,7 +11,6 @@
 			<div class="main-wrapper col-xs-9 col-xs-push-1">
 				<% include ../shared/flashes %>
 				<h1 class="pg-title">Edit Procedure</h1>
-
 				<div class="panel panel-default">
 				  <div class="panel-heading">
 				  	<h3 class="panel-title">Details</h3>
@@ -21,26 +20,30 @@
 				  </div>
 		  	</div>
 
-				<div class="panel panel-default">
+	  		<div class="panel panel-default">
 				  <div class="panel-heading">
 				  	<h3 class="panel-title">Question Set</h3>
 				  </div>
 				  <div class="panel-body question-set-list">
-				  	<form class="form-primary" method="post">
-					  	<%- procedure.questions_html_formized() %>
+				  	<form id="questions_edit" class="form-primary" method="post">
+				  		<ul>
+					  		<% for (var i = 0; i < procedure.questions.length; i++) { %>
+					  			<li><button type="button" class="btn btn-xs btn-danger question-remove">Remove</button><%= procedure.questions[i].title %><input type="hidden" name="question" value="<%= procedure.questions[i]._id %>"></li>
+				  			<% } %>
+			  			</ul>
 					  	<div class="new-question-container">
-					  			<select class="form-control" id="new-question-select">
+							  	<button type="button" class="btn btn-primary" id="question-add">Add</button>
+							  	<select class="form-control" id="new-question-select">
 								  	<% for (var i = 0; i < questions.length; i++) { %>
 								  		<option value="<%= questions[i]._id %>"><%= questions[i].title %></option>
 								  	<% } %>
 							  	</select>
-							  	<button type="button" class="btn btn-secondary" id="question-add">Add</button>
 					  	</div>
-					  	<button type="button" class="btn btn-secondary new-question">Add a question</button>
-					  	<button type="submit" class="btn btn-primary save">Save</button>
+					  	<button type="button" class="btn btn-link new-question">Add Question</button>
 				  	</form>
 				  </div>
 	  		</div>
+				<button type="submit" form="questions_edit" class="btn btn-primary save">Save</button>
 				<footer>
 						<% include ../partials/footer %>
 				</footer>
