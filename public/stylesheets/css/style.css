@@ -37,6 +37,9 @@ a {
     background: none;
     color: red; }
 
+.back-link {
+  float: left; }
+
 @media (max-width: 768px) {
   .button-group {
     text-align: center;

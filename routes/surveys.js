@@ -66,8 +66,9 @@ router.get('/surveys/:id', function(req, res, next) {
 	.exec(function(err, survey) {
 		if (err) throw err;
 		question_set = survey.questions;
+		let backURL = req.header('Referer') || null;
 		res.render('surveys/show', { question_set: JSON.stringify(question_set),
-			patient : survey.patient, flash: req.flash() });
+			patient : survey.patient, flash: req.flash(), backURL: backURL });
 	});
 });
 
