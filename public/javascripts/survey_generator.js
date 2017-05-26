@@ -1,7 +1,8 @@
 $(document).ready(function(){
 	var pathname = window.location.pathname;
-	console.log(pathname);
 	var question_set = JSON.parse($('#questions-json').attr('value'));
+	var patient_age = JSON.parse($('#patient-age').attr('value'));
+	console.log(patient_age);
 	
 	// Get Survey from JSON file
 	var survey_builder = [];
@@ -24,13 +25,19 @@ $(document).ready(function(){
 	Survey.Survey.cssType = "bootstrap";
 	var survey = new Survey.Model(survey_builder);
 
+	$("#surveyElement").Survey({model:survey, onComplete:sendDataToServer});
+	adaptFontSize();
+
 	function sendDataToServer(survey) {
 		var resultAsString = JSON.stringify(survey.data);
 		$.post(pathname, { results: resultAsString }).done(function(status) {
 			$("#notifier").append(status);
-    });
+	  });
 	}
 
-	$("#surveyElement").Survey({model:survey, onComplete:sendDataToServer});
+	function adaptFontSize() {
+		if (patient_age > 50)
+			$("#surveyElement h5").css("fontSize", "26px");
+	}
 
 });

@@ -4,6 +4,7 @@
 	</head>
 	<body>
 		<input type="hidden" id="questions-json" value="<%= question_set %>" />
+		<input type="hidden" id="patient-age" value="<%= patient.age() %>" />
 		<div class="main-wrapper col-xs-8 col-xs-push-2 survey">
 			<% include ../shared/flashes %>
 			<a class="back-link" href="<%= backURL %>">	&larr; Go back</a>
