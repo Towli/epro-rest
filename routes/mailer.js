@@ -9,7 +9,8 @@ var ejs = require('ejs');
 
 /* GET /mailer/survey_id for mailing a survey to a patient */
 router.get('/mailer/:survey_id', function(req, res, next) {
-  var surveyMailer = new Mailer();
+  var Factory = new Mailer.Factory();
+  var surveyMailer = Factory.createMailer("GMAIL");
   var compiledTemplate = compileEmailTemplate();
   var survey_id = req.params.survey_id;
   

@@ -1,52 +1,98 @@
 var nodemailer = require('nodemailer');
 
-function Mailer() {
-  this.options = {
-    from: "",
-    to: "",
-    subject: "",
-    html: ""
+class Mailer {
+  constructor() {
+    this.options = {
+      from: "",
+      to: "",
+      subject: "",
+      html: ""
+    }
   }
-  this.initialiseTransporter();
+  sendMail(callback) {
+    this.transporter.sendMail(mailOptions, function(error, info) {
+      if (error) throw err;
+      console.log('Message %s sent: %s', info.messageId, info.response);
+      transporter.close();
+    });
+    callback();
+  }
+
+  setSender(sender) {
+    this.options.from = sender;
+  }
+
+  setReceiver(receiver) {
+    this.options.to = receiver;
+  }
+
+  setSubject(subject) {
+    this.options.subject = subject;
+  }
+
+  setHTML(html) {
+    this.options.html = html;
+  }
+
+  setOptions(options) {
+    this.options = options;
+  }
 }
 
-Mailer.prototype.initialiseTransporter = function() {
-  this.transporter = nodemailer.createTransport({
+class GmailMailer extends Mailer {
+  constructor() {
+    super();
+    this.transporter = nodemailer.createTransport({
       service: 'Gmail',
+      secure: true,
       auth: {
           user: "hospitalmailer@gmail.com",
           pass: "hospitalpassword123"
       }
-  });
+      /* Extensible for more GMAIL based options */
+    });
+  } 
 }
 
-Mailer.prototype.sendMail = function(callback) {
-  this.transporter.sendMail(mailOptions, function(error, info) {
-    if (error) throw err;
-    console.log('Message %s sent: %s', info.messageId, info.response);
-    transporter.close();
-  });
-  callback();
+class HotmailMailer extends Mailer {
+  constructor() {
+    super();
+    this.transporter = nodemailer.createTransport({
+      service: 'Hotmail',
+      auth: {
+          user: "hospitalmailer@hotmail.com",
+          pass: "hospitalpassword123"
+      }
+      /* Extensible for more HOTMAIL based options */
+    });
+  }
 }
 
-Mailer.prototype.setSender = function(sender) {
-  this.options.from = sender;
+class YahooMailer extends Mailer {
+  constructor() {
+    super();
+    this.transporter = nodemailer.createTransport({
+      service: 'Yahoo',
+      auth: {
+          user: "hospitalmailer@yahoo.com",
+          pass: "hospitalpassword123"
+      }
+      /* Extensible for more YAHOO based options */
+    });
+  }
 }
 
-Mailer.prototype.setReceiver = function(receiver) {
-  this.options.to = receiver;
+class Factory {
+  createMailer(type) {
+    if (type.toUpperCase() === 'GMAIL')
+      return new GmailMailer();
+    else
+    if (type.toUpperCase() === 'HOTMAIL')
+      return new HotmailMailer();
+    else
+    if(type.toUpperCase() === 'YAHOO')
+      return new YahooMailer();
+  }
 }
 
-Mailer.prototype.setSubject = function(subject) {
-  this.options.subject = subject;
-}
-
-Mailer.prototype.setHTML = function(html) {
-  this.options.html = html;
-}
-
-Mailer.prototype.setOptions = function(options) {
-  this.options = options;
-}
-
-module.exports = Mailer;
+module.exports = { Factory };
