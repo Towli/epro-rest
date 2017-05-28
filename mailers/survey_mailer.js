@@ -1,4 +1,5 @@
-var nodemailer = require('nodemailer');
+"use strict";
+const nodemailer = require('nodemailer');
 
 class Mailer {
   constructor() {

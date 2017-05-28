@@ -1,20 +1,20 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
-var helmet = require('helmet');
-var index = require('./routes/index');
-var patients = require('./routes/patients');
-var procedures = require('./routes/procedures');
-var surveys = require('./routes/surveys');
-var mailer = require('./routes/mailer');
-var flash = require('connect-flash');
-var session = require('express-session');
-var app = express();
+const express = require('express')
+  , path = require('path')
+  , favicon = require('serve-favicon')
+  , logger = require('morgan')
+  , cookieParser = require('cookie-parser')
+  , bodyParser = require('body-parser')
+  , mongo = require('mongodb')
+  , mongoose = require('mongoose')
+  , helmet = require('helmet')
+  , index = require('./routes/index')
+  , patients = require('./routes/patients')
+  , procedures = require('./routes/procedures')
+  , surveys = require('./routes/surveys')
+  , mailer = require('./routes/mailer')
+  , flash = require('connect-flash')
+  , session = require('express-session')
+  , app = express();
 
 // use helmet early to ensure headers are sure to be set
 app.use(helmet());

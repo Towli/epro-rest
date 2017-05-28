@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var Patient = require('../models/patient');
-var Procedure = require('../models/procedure');
-var Survey = require('../models/survey');
-var fs = require('fs');
+"use strict";
+const express = require('express')
+	, router = express.Router()
+	, Patient = require('../models/patient')
+	, Procedure = require('../models/procedure')
+	, Survey = require('../models/survey')
+	, fs = require('fs');
 
 /* GET /surveys/ (index page) */
 router.get('/surveys', function(req, res, next) {
@@ -58,8 +59,8 @@ router.post('/surveys/new', function(req, res, next) {
 
 /* GET /surveys/:id (show survey) */
 router.get('/surveys/:id', function(req, res, next) {
-	var id = req.params.id;
-	var question_set;
+	let id = req.params.id;
+	let question_set;
 	Survey.findById(id)
 	.populate('questions')
 	.populate('patient')
@@ -76,7 +77,7 @@ router.get('/surveys/:id', function(req, res, next) {
 
 /* GET /surveys/:id/results (show survey results) */
 router.get('/surveys/:id/results', function(req, res, next) {
-	var id = req.params.id;
+	let id = req.params.id;
 	Survey.findById(id)
 	.populate('patient')
 	.exec(function(err, survey) {
@@ -88,8 +89,8 @@ router.get('/surveys/:id/results', function(req, res, next) {
 
 /* POST /surveys/:id (survey completion) */
 router.post('/surveys/:id', function(req, res, next) {
-	var id = req.params.id;
-	var results = JSON.parse(req.body.results);
+	let id = req.params.id;
+	let results = JSON.parse(req.body.results);
 	Survey.findById(id, function (err, survey) {
 		if (err) throw err;
 		survey.results = results;
@@ -103,7 +104,7 @@ router.post('/surveys/:id', function(req, res, next) {
 
 /* DELETE /surveys/:id */
 router.post('/surveys', function(req, res, next) {
-	var id = req.body.id;
+	let id = req.body.id;
 	Survey.findByIdAndRemove(id, function(err, survey) {
 		req.flash('success', 'Survey deleted successfully.');
 		res.redirect('/surveys');

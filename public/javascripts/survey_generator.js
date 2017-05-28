@@ -1,3 +1,4 @@
+"use strict";
 $(document).ready(function(){
 	var pathname = window.location.pathname;
 	var question_set = JSON.parse($('#questions-json').attr('value'));

@@ -1,18 +1,19 @@
-var express = require('express');
-var router = express.Router();
-var Patient = require('../models/patient');
-var Procedure = require('../models/procedure');
-var Survey = require('../models/survey');
-var Mailer = require('../mailers/survey_mailer.js');
-var fs = require('fs');
-var ejs = require('ejs');
+"use strict";
+const express = require('express')
+  , router = express.Router()
+  , Patient = require('../models/patient')
+  , Procedure = require('../models/procedure')
+  , Survey = require('../models/survey')
+  , Mailer = require('../mailers/survey_mailer.js')
+  , fs = require('fs')
+  , ejs = require('ejs');
 
 /* GET /mailer/survey_id for mailing a survey to a patient */
 router.get('/mailer/:survey_id', function(req, res, next) {
-  var Factory = new Mailer.Factory();
-  var surveyMailer = Factory.createMailer("GMAIL");
-  var compiledTemplate = compileEmailTemplate();
-  var survey_id = req.params.survey_id;
+  let Factory = new Mailer.Factory();
+  let surveyMailer = Factory.createMailer("GMAIL");
+  let compiledTemplate = compileEmailTemplate();
+  let survey_id = req.params.survey_id;
   
   Survey.findById(survey_id)
   .populate('patient')

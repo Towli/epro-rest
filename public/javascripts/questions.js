@@ -1,3 +1,4 @@
+"use strict";
 $(document).ready(function(){
 
   var pathname = window.location.pathname;

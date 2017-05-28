@@ -1,3 +1,4 @@
+"use strict";
 $(document).ready(function(){
 	Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
 	Survey.Survey.cssType = "bootstrap";

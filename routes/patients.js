@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
-var Patient = require('../models/patient');
-var Procedure = require('../models/procedure');
-var Survey = require('../models/survey');
+"use strict";
+const express = require('express')
+	, router = express.Router()
+	, Patient = require('../models/patient')
+	, Procedure = require('../models/procedure')
+	, Survey = require('../models/survey');
 
 /* GET /patients/ (index page) */
 router.get('/patients', function(req, res, next) {
@@ -24,7 +25,7 @@ router.get('/patients/new/', function(req, res, next) {
 /* POST /patients/new */
 router.post('/patients/new', function(req, res, next) {
 	/* Create a new patient from req params */
-	var patient = new Patient({	
+	let patient = new Patient({	
 		first_name: req.body.first_name,
 		last_name: req.body.last_name,
 		dob: req.body.dob,
@@ -47,7 +48,7 @@ router.post('/patients/new', function(req, res, next) {
 
 /* GET /patients/:id (show patient page) */
 router.get('/patients/:id', function(req, res) {
-	var id = req.params.id;
+	let id = req.params.id;
 	Patient.findById(id)
 	.populate('procedure')
 	.exec(function(err, patient) {
@@ -61,7 +62,7 @@ router.get('/patients/:id', function(req, res) {
 
 /* GET /patients/:id/edit (edit patient page) */
 router.get('/patients/:id/edit', function(req, res) {
-	var id = req.params.id;	
+	let id = req.params.id;	
 	Procedure.find({}, function(err, procedures) {
 		if (err) throw err;
 		Patient.findById(id)
@@ -94,8 +95,7 @@ router.post('/patients/:id/edit', function(req, res) {
 
 /* DELETE /patients/:id */
 router.post('/patients', function(req, res, next) {
-	var id = req.body.id;
-	console.log("id = "+id);
+	let id = req.body.id;
 	Patient.findByIdAndRemove(id, function(err, patient) {
 		req.flash('success', 'Patient deleted successfully.');
 		res.redirect('/patients');
