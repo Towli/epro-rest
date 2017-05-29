@@ -3,13 +3,12 @@ $(document).ready(function(){
 	var pathname = window.location.pathname;
 	var question_set = JSON.parse($('#questions-json').attr('value'));
 	var patient_age = JSON.parse($('#patient-age').attr('value'));
-	console.log(patient_age);
 	
 	// Get Survey from JSON file
 	var survey_builder = [];
 	for (var i = 0; i < question_set.length; i++) {
 		survey_builder.push({
-			name : "Question " + i,
+			name : question_set[i].title,
 			type : "radiogroup",
 			title : question_set[i].title,
 			isRequired : true,

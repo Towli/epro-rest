@@ -63,6 +63,7 @@
 				  	<div class="panel-body">
 				  		<% if (survey !== null && survey.is_complete()) { %>
 				  			<a href="/surveys/<%= survey._id %>/results" class="btn btn-primary btn-xs">View Survey Results</a>
+				  			<a class="btn btn-primary btn-xs" id="csv">Dump CSV</a>
 			  			<% } %>
 			  		</div>
 				</div>

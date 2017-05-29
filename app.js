@@ -12,6 +12,7 @@ const express = require('express')
   , procedures = require('./routes/procedures')
   , surveys = require('./routes/surveys')
   , mailer = require('./routes/mailer')
+  , results = require('./routes/results')
   , flash = require('connect-flash')
   , session = require('express-session')
   , app = express();
@@ -61,6 +62,7 @@ app.use(patients);
 app.use(procedures);
 app.use(surveys);
 app.use(mailer);
+app.use(results);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

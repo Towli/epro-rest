@@ -93,7 +93,7 @@ router.post('/surveys/:id', function(req, res, next) {
 	let results = JSON.parse(req.body.results);
 	Survey.findById(id, function (err, survey) {
 		if (err) throw err;
-		survey.results = results;
+		survey.results = santizeResults(results);
 		survey.complete();
 		survey.save(function(err) {
 			if (err) throw err;
@@ -120,5 +120,10 @@ router.get('/surveys/example1', function(req, res, next) {
 router.get('/surveys/example2', function(req, res, next) {
 	res.render('surveys/example2');
 });
+
+function santizeResults(results) {
+	let santizedResults = JSON.stringify(results).replace('.', "");
+	return JSON.parse(santizedResults);
+}
 
 module.exports = router;
