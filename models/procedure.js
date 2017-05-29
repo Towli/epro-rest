@@ -11,42 +11,42 @@ var procedureSchema = new Schema({
 });
 
 /* Converts the Procedure's description to an excerpt of 120 characters */
-procedureSchema.methods.description_to_excerpt = function () {
+procedureSchema.methods.descriptionToExcerpt = function () {
 	var excerpt = this.description.substring(0, 120);
 	excerpt += "...";
 	return excerpt;
 }
 
-procedureSchema.methods.questions_html_humanized = function() {
+procedureSchema.methods.questionsHTMLHumanized = function() {
 	if (!this.questions)
 		return "<p>Question set has not been assigned.</p>";
 	else {
 		var questions = this.questions;
-		var questions_html = "<ul>";
+		var questionsHTML = "<ul>";
 		var id = "";
 		for (var i = 0; i < questions.length; i++) {
 			id = this.questions[i]._id;
-			questions_html += "<li value=\""+id+"\">"+questions[i].title+"</li>";
+			questionsHTML += "<li value=\""+id+"\">"+questions[i].title+"</li>";
 		}
-		questions_html += "</ul>"
-		return questions_html;
+		questionsHTML += "</ul>"
+		return questionsHTML;
 	}
 }
 
-procedureSchema.methods.questions_html_formized = function() {
+procedureSchema.methods.questionsHTMLFormized = function() {
 	if (!this.questions)
 		return "<ul>Question set has not been assigned.</ul>";
 	else {
 		var questions = this.questions;
-		var questions_html = "<ul>";
+		var questionsHTML = "<ul>";
 		var id = "";
 		for (var i = 0; i < questions.length; i++) {
 			id = this.questions[i]._id;
-			questions_html += "<li>"+questions[i].title+
+			questionsHTML += "<li>"+questions[i].title+
 			"<input type=\"hidden\" name=\"question\" value=\""+id+"\"</li>";
 		}
-		questions_html += "</ul>"
-		return questions_html;
+		questionsHTML += "</ul>"
+		return questionsHTML;
 	}
 }
 

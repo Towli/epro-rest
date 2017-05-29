@@ -32,19 +32,19 @@
 										<%= i+1	 %>
 									</td>
 									<td>
-										<%= surveys[i].patient.full_name() %>
+										<%= surveys[i].patient.fullName() %>
 									</td>
 									<td>
-										<div class="survey-status"><%= surveys[i].completion_status() %><div>
+										<div class="survey-status"><%= surveys[i].completionStatus() %><div>
 									</td>
 									<td>
-										<div class="survey-status"><%= surveys[i].is_delivered() %><div>
+										<div class="survey-status"><%= surveys[i].isDelivered() %><div>
 									</td>
 									<td>
 										TODO
 									</td>
 									<td>
-										<%= surveys[i].created_at_humanized() %>
+										<%= surveys[i].createdAtHumanized() %>
 									</td>
 									<td>
 										<a href="/surveys/<%= surveys[i]._id %>"><button class="btn btn-primary btn-xs">View</button></a>

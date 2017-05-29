@@ -18,7 +18,7 @@
 							<p><em>Select the patient to generate a survey for:</em></p>
 							<select name="patient" class="form-control">
 							<% for(var i = 0; i < patients.length; i++) { %>
-								<option value="<%= patients[i]._id %>"><%= patients[i].full_name() %></option>
+								<option value="<%= patients[i]._id %>"><%= patients[i].fullName() %></option>
 							<% } %>
 							</select>
 						</div>

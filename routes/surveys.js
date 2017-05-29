@@ -50,7 +50,7 @@ router.post('/surveys/new', function(req, res, next) {
 			/* Call the built-in save method to persist to db */
 			survey.save(function(err) {
 				if (err) throw err;
-				req.flash('success', 'Survey for: ' + patient.full_name() + ' generated succesfully.');
+				req.flash('success', 'Survey for: ' + patient.fullName() + ' generated succesfully.');
 				res.redirect(survey._id);
 			});
 		});
@@ -67,7 +67,7 @@ router.get('/surveys/:id', function(req, res, next) {
 	.exec(function(err, survey) {
 		if (err) throw err;
 		let backURL = req.header('Referer') || null;
-		if (survey.is_complete())
+		if (survey.isComplete())
 			res.redirect('/surveys/'+id+'/results');
 		question_set = survey.questions;
 		res.render('surveys/show', { question_set: JSON.stringify(question_set),

@@ -13,15 +13,15 @@ router.get('/mailer/:survey_id', function(req, res, next) {
   let Factory = new Mailer.Factory();
   let surveyMailer = Factory.createMailer("GMAIL");
   let compiledTemplate = compileEmailTemplate();
-  let survey_id = req.params.survey_id;
+  let surveyID = req.params.survey_id;
   
-  Survey.findById(survey_id)
+  Survey.findById(surveyID)
   .populate('patient')
   .exec(function (err, survey) {
     let mailOptions = {
        to: survey.patient.contact.email,
        subject: 'Your survey',
-       html: compiledTemplate({patient: survey.patient, survey_id: survey_id})
+       html: compiledTemplate({patient: survey.patient, surveyID: surveyID})
     };
     surveyMailer.setOptions(mailOptions);
     surveyMailer.sendMail(function() {

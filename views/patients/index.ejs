@@ -31,16 +31,16 @@
 										<%= i+1	 %>
 									</td>
 									<td>
-										<a href="/patients/<%= patients[i]._id %>"><%= patients[i].full_name() %></a>
+										<a href="/patients/<%= patients[i]._id %>"><%= patients[i].fullName() %></a>
 									</td>
 									<td>
-										<%= patients[i].dob_humanized() %>
+										<%= patients[i].dobHumanized() %>
 									</td>
 									<td>
 										<%= patients[i].gender %>
 									</td>
 									<td>
-										<%= patients[i].created_at_humanized() %>
+										<%= patients[i].createdAtHumanized() %>
 									</td>
 									<td>
 										<a href="/patients/<%= patients[i]._id %>"><button class="btn btn-primary btn-xs">View</button></a>

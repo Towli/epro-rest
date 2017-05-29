@@ -27,37 +27,37 @@ patientSchema.pre('save', function(next) {
 });
 
 /* Helper methods */
-patientSchema.methods.full_name = function() {
+patientSchema.methods.fullName = function() {
 	return this.first_name + " " + this.last_name;
 }
 
-patientSchema.methods.created_at_humanized = function() {
+patientSchema.methods.createdAtHumanized = function() {
 	return this.created_at.toDateString();
 }
 
-patientSchema.methods.dob_humanized = function() {
+patientSchema.methods.dobHumanized = function() {
 	return this.dob.toDateString();
 }
 
-patientSchema.methods.dob_form_format = function() {
+patientSchema.methods.dobFormFormat = function() {
 	var day = ('0' + this.dob.getDate()).slice(-2);
 	var month = ('0' + (this.dob.getMonth()+1)).slice(-2);
-	var dob_form_format = this.dob.getFullYear() + 
+	var dobFormFormat = this.dob.getFullYear() + 
 	"-" + month + "-" + day;
-	return dob_form_format;
+	return dobFormFormat;
 }
 
 patientSchema.methods.age = function() {
-	var current_date = new Date();
-	var current_year = current_date.getFullYear();
-	var current_month = current_date.getMonth();
-	var patient_age = current_year - this.dob.getFullYear();
+	var currentDate = new Date();
+	var currentYear = currentDate.getFullYear();
+	var currentMonth = currentDate.getMonth();
+	var patientAge = currentYear - this.dob.getFullYear();
 
 	/* If month of birth is greater than the current month, subtract a year of age */
-	if (this.dob.getMonth() > current_month)
-		patient_age--;
+	if (this.dob.getMonth() > currentMonth)
+		patientAge--;
 
-	return patient_age;
+	return patientAge;
 }
 
 module.exports = mongoose.model('Patient', patientSchema);

@@ -21,7 +21,7 @@ surveySchema.pre('save', function(next) {
 	next();
 });
 
-surveySchema.methods.created_at_humanized = function() {
+surveySchema.methods.createdAtHumanized = function() {
 	return this.created_at.toDateString();
 }
 
@@ -31,22 +31,22 @@ surveySchema.methods.complete = function() {
 	this.completed_at = currentDate;
 }
 
-surveySchema.methods.completed_at_humanized = function() {
+surveySchema.methods.completedAtHumanized = function() {
 	return this.completed_at.toDateString();
 }
 
-surveySchema.methods.completion_status = function() {
+surveySchema.methods.completionStatus = function() {
 	if (this.completed)
 		return "Complete"
 	else
 		return "Incomplete"
 }
 
-surveySchema.methods.is_delivered = function() {
+surveySchema.methods.isDelivered = function() {
 	return this.delivered;
 }
 
-surveySchema.methods.is_complete = function() {
+surveySchema.methods.isComplete = function() {
 	return this.completed;
 }
 
