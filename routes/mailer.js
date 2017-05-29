@@ -18,7 +18,7 @@ router.get('/mailer/:survey_id', function(req, res, next) {
   Survey.findById(survey_id)
   .populate('patient')
   .exec(function (err, survey) {
-    mailOptions = {
+    let mailOptions = {
        to: survey.patient.contact.email,
        subject: 'Your survey',
        html: compiledTemplate({patient: survey.patient, survey_id: survey_id})

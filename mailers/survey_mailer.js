@@ -11,7 +11,7 @@ class Mailer {
     }
   }
   sendMail(callback) {
-    this.transporter.sendMail(mailOptions, function(error, info) {
+    this.transporter.sendMail(this.options, function(error, info) {
       if (error) throw err;
       console.log('Message %s sent: %s', info.messageId, info.response);
       transporter.close();
