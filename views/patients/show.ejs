@@ -61,7 +61,7 @@
 					    <h3 class="panel-title">PRO history</h3>
 				  	</div>
 				  	<div class="panel-body">
-				  		<% if (survey !== null && survey.is_complete()) { %>
+				  		<% if (survey !== null && survey.isComplete()) { %>
 				  			<a href="/surveys/<%= survey._id %>/results" class="btn btn-primary btn-xs">View Survey Results</a>
 				  			<a class="btn btn-primary btn-xs" id="csv">Dump CSV</a>
 			  			<% } %>

@@ -15,32 +15,35 @@ const express = require('express')
   , results = require('./routes/results')
   , flash = require('connect-flash')
   , session = require('express-session')
+  , expressValidator = require('express-validator')
   , app = express();
 
-// use helmet early to ensure headers are sure to be set
+/* Use helmet early to ensure headers are sure to be set */
 app.use(helmet());
 
-// connect to mongodb
+/* Establish connection to MongoDB instance */
 var config = require('./config.json')[app.get('env')];
 mongoose.connect(config.mongoURI);
 mongoose.Promise = Promise;
 
-// test connection
+/* Test Connection */
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('Successfully connected to mongo database localhost:27017/epro');
 });
 
-// view engine setup
+/* View engine setup (EJS) */
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
+
+/* Parsers and data validation */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator());
+
 app.use(require('node-sass-middleware')({
   src: path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
@@ -49,12 +52,12 @@ app.use(require('node-sass-middleware')({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// flashes
+/* Use flash-feedback with session object */
 app.use(cookieParser('abc'));
 app.use(session({cookie: { maxAge: 60000 }}));
 app.use(flash());
 
-// fetch scripts from node_modules directory
+/* Fetch scripts from node_modules directory */
 app.use('/js', express.static(__dirname + '/node_modules/survey-jquery/'));    
 
 app.use(index);
@@ -64,14 +67,14 @@ app.use(surveys);
 app.use(mailer);
 app.use(results);
 
-// catch 404 and forward to error handler
+/* Catch 404 and forward to error handler */
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-// error handler
+/* Error handler */
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;

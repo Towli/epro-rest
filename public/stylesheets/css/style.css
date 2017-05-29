@@ -105,3 +105,8 @@ footer {
   margin: auto; }
   .question-set-list ul {
     list-style-type: none; }
+
+.errors {
+  margin-left: 33%;
+  text-align: left;
+  color: red; }

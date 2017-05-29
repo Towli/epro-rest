@@ -18,32 +18,29 @@ router.get('/patients', function(req, res, next) {
 router.get('/patients/new/', function(req, res, next) {
 	Procedure.find({}, function(err, procedures) {
 		if (err) throw err;
-		res.render('patients/new', {procedures : procedures});
+		res.render('patients/new', {error: undefined, procedures : procedures});
 	})
 });
 
 /* POST /patients/new */
 router.post('/patients/new', function(req, res, next) {
 	/* Create a new patient from req params */
-	let patient = new Patient({	
-		first_name: req.body.first_name,
-		last_name: req.body.last_name,
-		dob: req.body.dob,
-		gender: req.body.gender,
-		contact: { 
-			phone: req.body.phone,
-			email: req.body.email 
-		},
-		procedure: req.body.procedure,
-		surveyed: false
-	});
-
-	/* Call the built-in save method to persist to db */
-	patient.save(function(err) {
-		if (err) throw err;
-		req.flash('success', 'Patient successfully created!');
-		res.redirect('/patients');
-	});
+	let errors = validateNewPatient(req);
+	if (errors)
+		Procedure.find({}, function(err, procedures) {
+			if (err) throw err;
+			res.render('patients/new', {errors: errors, procedures : procedures});
+		}) 
+	else {
+		let patient = buildPatient(req);
+		console.log(patient);
+		/* Call the built-in save method to persist to db */
+		patient.save(function(err) {
+			if (err) throw err;
+			req.flash('success', 'Patient successfully created!');
+			res.redirect('/patients');
+		});
+	}
 });
 
 /* GET /patients/:id (show patient page) */
@@ -101,5 +98,36 @@ router.post('/patients', function(req, res, next) {
 		res.redirect('/patients');
 	});
 });
+
+/* Validates and sanitizes a req.body for a new patient */
+function validateNewPatient(req) {
+	req.checkBody('first_name', 'Invalid name').isAlpha();
+	req.checkBody('last_name', 'Invalid name').isAlpha();
+	req.checkBody('dob', 'No DOB').notEmpty();
+	req.checkBody('phone', 'Invalid number').isMobilePhone("en-GB");
+	req.checkBody('email', 'Invalid name').notEmpty();
+	req.checkBody('gender', 'No gender').notEmpty();
+	req.sanitizeBody('first_name').escape();
+	req.sanitizeBody('last_name').escape();
+	req.sanitizeBody('phone').escape();
+	req.sanitizeBody('email').escape();
+	return req.validationErrors();
+}
+
+/* Builds a new Patient from schema */
+function buildPatient(req) {
+	return new Patient({
+		first_name: req.body.first_name,
+		last_name: req.body.last_name,
+		dob: req.body.dob,
+		gender: req.body.gender,
+		contact: { 
+			phone: req.body.phone,
+			email: req.body.email 
+		},
+		procedure: req.body.procedure,
+		surveyed: false
+	});
+}
 
 module.exports = router;
