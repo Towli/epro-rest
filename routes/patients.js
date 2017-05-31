@@ -94,8 +94,10 @@ router.post('/patients/:id/edit', function(req, res) {
 router.post('/patients', function(req, res, next) {
 	let id = req.body.id;
 	Patient.findByIdAndRemove(id, function(err, patient) {
-		req.flash('success', 'Patient deleted successfully.');
-		res.redirect('/patients');
+		Survey.remove({patient: id}, function(err, survey) {
+			req.flash('success', 'Patient deleted successfully.');
+			res.redirect('/patients');
+		});
 	});
 });
 
