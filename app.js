@@ -1,3 +1,4 @@
+require('dotenv/config');
 const express = require('express')
   , path = require('path')
   , favicon = require('serve-favicon')
@@ -84,5 +85,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+//console.log(process.env.SECRET_MESSAGE);
 
 module.exports = app;
