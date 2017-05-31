@@ -7,7 +7,7 @@
       <% include ../shared/flashes %>
       <a class="back-link" href="<%= backURL %>"> &larr; Go back</a>
       <h1 class="pg-title">Survey Results</h1>
-      <h2><%= patient.full_name() %></h2>
+      <h2><%= patient.fullName() %></h2>
       <hr>
       <div id="results">
         <%= JSON.stringify(survey.results) %>
