@@ -12,13 +12,13 @@ html, body {
   padding: 0 20px 0 20px; }
 
 a {
-  color: #777; 
-}
+  color: #777; }
 
 .container {
   margin: 0;
   padding: 0;
-  height: 100%; }
+  height: 100%;
+  width: 100%; }
 
 .button-group {
   text-align: center;
@@ -44,7 +44,10 @@ a {
     width: 500px; } }
 
 footer {
-  margin-top: 150px; }
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  z-index: -1; }
 
 /* Survey */
 #surveyElement {
@@ -61,19 +64,64 @@ footer {
   text-align: center; }
   .survey h1, .survey h2, .survey h5 {
     color: black; }
+  .survey span {
+    text-align: center; }
 
 /* Navigation */
 /* Top Navigation */
-/* Side Navigation */
 .navbar {
   margin-bottom: 0;
+  border-bottom: 1px solid #999;
   background-color: #fff;
-  border: none; }
+  border: none;
+  z-index: 0; }
 
-.sidebar {
+.notifications {
+  margin-top: 1em;
+  float: right; }
+
+/* Side Navigation */
+.navbar-header {
+  width: 100%; }
+
+.sidebar, .sidebar-overlay {
   padding: 0;
   height: 100%;
   background-color: #fff; }
+
+.sidebar-overlay {
+  font-size: 32px;
+  background-color: #286090;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999; }
+  .sidebar-overlay a {
+    color: white; }
+  .sidebar-overlay .glyphicon {
+    margin: 1em 0 0 1em;
+    cursor: pointer; }
+
+.nav {
+  display: inline-block;
+  padding: 1em;
+  width: 100%; }
+
+.navbar-toggle {
+  float: left; }
+
+@media (max-width: 768px) {
+  .sidebar, .sidebar-overlay {
+    display: none; } }
+
+@media (min-width: 768px) {
+  .sidebar, .sidebar-overlay {
+    display: inline-block; }
+  .sidebar-overlay {
+    display: none; }
+  .navbar-toggle {
+    display: none; } }
 
 /* Tables */
 .fixed-height {

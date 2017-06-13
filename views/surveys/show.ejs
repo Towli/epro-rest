@@ -5,7 +5,7 @@
 	<body>
 		<input type="hidden" id="questions-json" value="<%= question_set %>" />
 		<input type="hidden" id="patient-age" value="<%= patient.age() %>" />
-		<div class="main-wrapper col-xs-8 col-xs-push-2 survey">
+		<div class="main-wrapper col-md-6 col-md-push-3 col-xs-10 col-xs-push-1 survey">
 			<% include ../shared/flashes %>
 			<a class="back-link" href="<%= backURL %>">	&larr; Go back</a>
 			<h1 class="pg-title">Generated Survey</h1>

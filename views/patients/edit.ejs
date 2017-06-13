@@ -3,12 +3,10 @@
     <% include ../partials/head %>
   </head>
   <body>
-    <header>
-      <% include ../partials/header %>
-    </header>
+    <% include ../partials/side_nav %>
+    <% include ../partials/header %>
     <div class="container">
-      <% include ../partials/side_nav %>  
-        <div class="main-wrapper col-xs-9 col-xs-push-1">
+      <div class="main-wrapper col-sm-8 col-xs-10 col-xs-push-1">
           <% include ../shared/flashes %>
           <h1 class="pg-title">Edit Patient</h1>
           <form class="form-primary" method="post">
